@@ -133,6 +133,7 @@ public class Event {
         // Update scoreboard
         Bukkit.getOnlinePlayers().forEach(player -> new EventScoreboard(plugin, player));
 
+        Bukkit.setWhitelist(false);
         Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aThe tournament has been started."));
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {

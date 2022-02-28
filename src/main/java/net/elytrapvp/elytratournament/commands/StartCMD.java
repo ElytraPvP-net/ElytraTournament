@@ -25,7 +25,7 @@ public class StartCMD extends AbstractCommand {
         }
 
         // Make sure there are enough players to start a tournament.
-        if(Bukkit.getOnlinePlayers().size() < 1) {
+        if(Bukkit.getOnlinePlayers().size() <= 1) {
             ChatUtils.chat(sender, "&cError &8» &cThere are not enough players to start!");
             return;
         }
@@ -38,6 +38,8 @@ public class StartCMD extends AbstractCommand {
             return;
         }
 
+        Bukkit.setWhitelist(true);
+        Bukkit.broadcastMessage(ChatUtils.translate("&aTournament &8» &aGenerating Brackets"));
         plugin.eventManager().create();
     }
 }
