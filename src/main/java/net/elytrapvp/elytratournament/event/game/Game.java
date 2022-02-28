@@ -372,9 +372,18 @@ public class Game {
     public void playerKilled(Player player) {
         player.getLocation().getWorld().strikeLightning(player.getLocation());
         player.teleport(arena.getSpectateSpawn());
-        // TODO: Give new items
         broadcast("&a" + player.getName() + " has died!");
         new EventScoreboard(plugin, player).addPlayer(player);
+
+        player.getInventory().clear();
+        player.getInventory().setArmorContents(null);
+        player.setAllowFlight(false);
+        player.setFlying(false);
+        player.setMaxHealth(20.0);
+        player.setHealth(20.0);
+        player.teleport(arena.getSpectateSpawn());
+        player.spigot().setCollidesWithEntities(true);
+        ((CraftPlayer) player).getHandle().getDataWatcher().watch(9, (byte) 0);
 
         // Prevents stuff from breaking if the game is already over.
         if(gameState == GameState.END) {
