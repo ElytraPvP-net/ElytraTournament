@@ -6,7 +6,6 @@ import net.elytrapvp.elytratournament.utils.scoreboard.CustomScoreboard;
 import net.elytrapvp.elytratournament.utils.scoreboard.ScoreHelper;
 import org.bukkit.entity.Player;
 
-import java.util.List;
 
 public class GameScoreboard extends CustomScoreboard {
     private final Game game;
@@ -30,17 +29,20 @@ public class GameScoreboard extends CustomScoreboard {
         }
 
         helper.setTitle("&a&lTournament &c(Alpha)");
-        helper.setSlot(14, "&7&m------------------");
-        helper.setSlot(13, "&aTime: &f" + game.getTimer().toString());
-        helper.setSlot(12, "");
-        helper.setSlot(11, "&aLadder");
-        helper.setSlot(10, "  &f" + plugin.eventManager().kit().getName());
-        helper.setSlot(9, " ");
-        helper.setSlot(8, "&aOpponent");
+        helper.setSlot(15, "&7&m------------------");
+        helper.setSlot(14, "&aTime: &f" + game.getTimer().toString());
+        helper.setSlot(13, "");
+        helper.setSlot(12, "&aLadder");
+        helper.setSlot(11, "  &f" + plugin.eventManager().kit().getName());
+        helper.setSlot(10, " ");
+        helper.setSlot(9, "&aOpponent");
 
         Player opponent = game.getOpponent(player);
-        helper.setSlot(5, "  &f" + opponent.getName());
-        helper.setSlot(4, "  " + ChatUtils.getFormattedHealthPercent(opponent) + " &7- " + ChatUtils.getFormattedPing(opponent));
+        helper.setSlot(8, "  &f" + opponent.getName());
+        helper.setSlot(7, "  " + ChatUtils.getFormattedHealthPercent(opponent) + " &7- " + ChatUtils.getFormattedPing(opponent));
+        helper.setSlot(6, "");
+        helper.setSlot(5, "&aScore:");
+        helper.setSlot(4, "  &f" + game.getScore(player) + " &7- &f" + game.getScore(game.getOpponent(player)));
         helper.setSlot(3, "");
         helper.setSlot(2, "&7&m------------------");
         helper.setSlot(1, "&aplay.elytrapvp.net");
