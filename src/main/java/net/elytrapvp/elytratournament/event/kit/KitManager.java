@@ -15,6 +15,7 @@ public class KitManager {
     public KitManager(ElytraTournament plugin) {
         kits.add(new ArcherKit(plugin));
         kits.add(new BlitzKit(plugin));
+        kits.add(new BowKit(plugin));
         kits.add(new ClassicKit(plugin));
         kits.add(new DiamondKit(plugin));
         kits.add(new IronKit(plugin));
