@@ -72,8 +72,14 @@ public class Event {
                 tournament = challonge.createTournament(builder.build());
 
                 // Add players to it.
+                List<ParticipantQuery> queries = new ArrayList<>();
                 for(Player player : Bukkit.getOnlinePlayers()) {
-                    addParticipant(player);
+                    queries.add(ParticipantQuery.builder().name(player.getName()).build());
+                }
+                List<Participant> participants = challonge.bulkAddParticipants(tournament, queries);
+
+                for(Participant participant : participants) {
+                    players.put(participant.getId(), Bukkit.getPlayer(participant.getName()));
                 }
             }
             catch (DataAccessException exception) {
@@ -90,16 +96,6 @@ public class Event {
                 }
             }.runTask(plugin);
         });
-    }
-
-    /**
-     * Add a player as a participant.
-     * @param player Player to add as a participant.
-     * @throws DataAccessException
-     */
-    private void addParticipant(Player player) throws DataAccessException {
-        Participant participant = challonge.addParticipant(tournament, ParticipantQuery.builder().name(player.getName()).build());
-        players.put(participant.getId(), player);
     }
 
     /**
