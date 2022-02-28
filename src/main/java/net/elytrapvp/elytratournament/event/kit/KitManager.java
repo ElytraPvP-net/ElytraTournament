@@ -4,6 +4,7 @@ import net.elytrapvp.elytratournament.ElytraTournament;
 import net.elytrapvp.elytratournament.event.kit.kits.ArcherKit;
 import net.elytrapvp.elytratournament.event.kit.kits.BlitzKit;
 import net.elytrapvp.elytratournament.event.kit.kits.ClassicKit;
+import net.elytrapvp.elytratournament.event.kit.kits.DiamondKit;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -18,6 +19,7 @@ public class KitManager {
         kits.add(new ArcherKit(plugin));
         kits.add(new BlitzKit(plugin));
         kits.add(new ClassicKit(plugin));
+        kits.add(new DiamondKit(plugin));
     }
 
     /**
