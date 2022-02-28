@@ -67,7 +67,7 @@ public class EventScoreboard extends CustomScoreboard {
                 helper.setSlot(9, "&aHost: &f" + plugin.eventManager().host().getName());
                 helper.setSlot(8, "&aKit: &f" + plugin.eventManager().kit().getName());
                 helper.setSlot(7, "&aBracket: &f" + plugin.eventManager().eventType());
-                helper.setSlot(6, "&aTeam: &f1v1 &7(&f" + plugin.eventManager().bestOf().toString() + "&7)");
+                helper.setSlot(6, "&aTeam: &f1v1 &7(" + plugin.eventManager().bestOf().toString() + "&7)");
                 helper.setSlot(5, "");
                 helper.setSlot(4, "&aFighting: &f" + (plugin.gameManager().getActiveGames().size() * 2));
                 helper.setSlot(3, "");
