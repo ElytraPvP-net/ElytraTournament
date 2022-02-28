@@ -1,6 +1,8 @@
 package net.elytrapvp.elytratournament.listeners;
 
 import net.elytrapvp.elytratournament.ElytraTournament;
+import net.elytrapvp.elytratournament.event.game.Game;
+import net.elytrapvp.elytratournament.event.game.GameState;
 import net.elytrapvp.elytratournament.guis.SettingsGUI;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -17,6 +19,18 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        Game game = plugin.gameManager().getGame(player);
+
+        // Prevent using items during game countdown.
+        if(game != null && game.getGameState() != GameState.RUNNING) {
+            event.setCancelled(true);
+
+            // Fixes visual glitch with throwables during countdown.
+            player.getInventory().setItem(player.getInventory().getHeldItemSlot(), player.getItemInHand());
+            return;
+        }
+
         // Exit if the item is null.
         if(event.getItem() == null)
             return;
@@ -31,7 +45,6 @@ public class PlayerInteractListener implements Listener {
             return;
         }
 
-        Player player = event.getPlayer();
         switch (item) {
             case "Settings" -> new SettingsGUI(plugin, player).open(player);
             case "Create Tournament" -> player.chat("/create");
