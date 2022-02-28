@@ -6,6 +6,7 @@ Maps:
       - SuzukaNakamoto
     kits:
       - Archer
+      - Blitz
     arenas:
       '1':
         spawns:
