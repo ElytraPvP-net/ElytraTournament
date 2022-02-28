@@ -19,6 +19,7 @@ public class KitManager {
         kits.add(new ClassicKit(plugin));
         kits.add(new DiamondKit(plugin));
         kits.add(new IronKit(plugin));
+        kits.add(new NoDebuffKit(plugin));
         kits.add(new OPKit(plugin));
     }
 
