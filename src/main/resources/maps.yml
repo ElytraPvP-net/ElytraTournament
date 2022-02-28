@@ -38,3 +38,42 @@ Maps:
           Z: -87.5
           Pitch: 0
           Yaw: -180
+  nether:
+    name: Nether
+    builders:
+      - RMicky
+      - SuzukaNakamoto
+    kits:
+      - Archer
+      - Blitz
+      - Bow
+      - Classic
+      - Diamond
+      - Iron
+      - No Debuff
+      - OP
+      - Speed Archer
+    arenas:
+      '1':
+        spawns:
+          '1':
+            World: world
+            X: 1002.5
+            Y: 66.5
+            Z: -90.5
+            Pitch: 0
+            Yaw: -135
+          '2':
+            World: world
+            X: 1052.5
+            Y: 66.5
+            Z: -140.5
+            Pitch: 0
+            Yaw: 45
+        spectate:
+          World: world
+          X: 1027.5
+          Y: 73.5
+          Z: -86.5
+          Pitch: 0
+          Yaw: 180
