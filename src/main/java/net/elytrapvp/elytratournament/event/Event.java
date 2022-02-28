@@ -20,6 +20,7 @@ import net.elytrapvp.elytratournament.players.CustomPlayer;
 import net.elytrapvp.elytratournament.utils.LocationUtils;
 import net.elytrapvp.elytratournament.utils.MapUtils;
 import net.elytrapvp.elytratournament.utils.chat.ChatUtils;
+import net.elytrapvp.elytratournament.utils.item.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -272,6 +273,7 @@ public class Event {
 
                             for(Player player : Bukkit.getOnlinePlayers()) {
                                 player.teleport(LocationUtils.getSpawn(plugin));
+                                ItemUtils.giveLobbyItems(player);
                             }
                         }, 200);
                     }
