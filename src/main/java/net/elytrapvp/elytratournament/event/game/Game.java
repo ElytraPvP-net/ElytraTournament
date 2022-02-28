@@ -20,10 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Game {
     private final Map<Location, Material> blocks = new HashMap<>();
@@ -237,6 +234,16 @@ public class Game {
     // -----------------------------------------------------------------------------------------------------------------
 
     /**
+     * Add a block to the game cache.
+     * Used for arena resetting.
+     * @param location Location of the block.
+     * @param material Material of the block.
+     */
+    public void addBlock(Location location, Material material) {
+        blocks.put(location, material);
+    }
+
+    /**
      * Add players to the game.
      * @param player1 First player to add.
      * @param player2 Second player to add.
@@ -275,6 +282,14 @@ public class Game {
         for(Player player : getPlayers()) {
             ChatUtils.centeredChat(player, message);
         }
+    }
+
+    /**
+     * Get all blocks that have been placed by players.
+     * @return All blocks placed by players.
+     */
+    public Collection<Location> getBlocks() {
+        return blocks.keySet();
     }
 
     /**
