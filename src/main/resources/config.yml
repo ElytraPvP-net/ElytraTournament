@@ -1,0 +1,17 @@
+challonge:
+  username: ""
+  api-key: ""
+MySQL:
+  host: localhost
+  port: 3306
+  database: database
+  username: username
+  password: password
+  useSSL: true
+Spawn:
+  World: world
+  X: 0.5
+  Y: 66
+  Z: 0.5
+  Pitch: 0
+  Yaw: 90

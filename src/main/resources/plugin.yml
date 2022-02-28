@@ -1,0 +1,14 @@
+name: ElytraTournament
+version: 1.0
+main: net.elytrapvp.elytratournament.ElytraTournament
+authors: [ ElytraPvP ]
+description: Tournament plugin for ElytraPvP
+website: http://www.elytrapvp.net
+
+commands:
+  create:
+    description: Create a tournament
+  start:
+    description: Start a tournament
+  cancel:
+    description: Cancel a tournmanet

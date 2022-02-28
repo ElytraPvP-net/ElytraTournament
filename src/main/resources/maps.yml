@@ -1,0 +1,32 @@
+Maps:
+  map:
+    name: Map
+    builders:
+      - RMicky
+      - SuzukaNakamoto
+    kits:
+      - Archer
+    arenas:
+      '1':
+        spawns:
+          '1':
+            World: world
+            X: 1194.5
+            Y: 66.5
+            Z: -141.5
+            Pitch: 0
+            Yaw: 45
+          '2':
+            World: world
+            X: 1145.5
+            Y: 66.5
+            Z: -91.5
+            Pitch: 0
+            Yaw: -135
+        spectate:
+          World: world
+          X: 1169.5
+          Y: 73.5
+          Z: -87.5
+          Pitch: 0
+          Yaw: -180
