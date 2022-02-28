@@ -21,6 +21,7 @@ public class KitManager {
         kits.add(new IronKit(plugin));
         kits.add(new NoDebuffKit(plugin));
         kits.add(new OPKit(plugin));
+        kits.add(new SpeedArcherKit(plugin));
     }
 
     /**
