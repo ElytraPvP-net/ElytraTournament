@@ -39,7 +39,7 @@ public class StartCMD extends AbstractCommand {
         }
 
         Bukkit.setWhitelist(true);
-        Bukkit.broadcastMessage(ChatUtils.translate("&aTournament &8» &aGenerating Brackets"));
+        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aGenerating Brackets"));
         plugin.eventManager().create();
     }
 }
