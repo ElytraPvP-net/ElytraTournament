@@ -64,7 +64,7 @@ public class Event {
                 TournamentQuery.TournamentQueryBuilder builder = TournamentQuery.builder();
                 builder.name(host.getName() + "'s Tournament #" + tournamentNumber)
                         .gameName("Minecraft")
-                        .description(plugin.eventManager().kit().getName() + " tournament on ElytraPvP. Join us at play.elytrapvp.net");
+                        .description(plugin.eventManager().kit().getName() + " tournament on ElytraPvP. Join us at play.elytrapvp.net").holdThirdPlaceMatch(true);
 
                 switch (plugin.eventManager().eventType()) {
                     case SINGLE_ELIMINATION -> builder.tournamentType(TournamentType.SINGLE_ELIMINATION);
