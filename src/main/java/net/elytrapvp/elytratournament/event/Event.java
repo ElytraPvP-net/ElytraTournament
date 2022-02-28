@@ -246,6 +246,17 @@ public class Event {
                         List<Player> topPlayers = new ArrayList<>();
                         topPlayers.addAll(rankings.keySet());
 
+                        CustomPlayer first = plugin.customPlayerManager().getPlayer(topPlayers.get(0));
+                        first.addGoldMedal();
+
+                        CustomPlayer second = plugin.customPlayerManager().getPlayer(topPlayers.get(1));
+                        second.addSilverMedal();
+
+                        if(topPlayers.size() > 3) {
+                            CustomPlayer third = plugin.customPlayerManager().getPlayer(topPlayers.get(2));
+                            third.addBronzeMedal();
+                        }
+
                         for(Player player : Bukkit.getOnlinePlayers()) {
                             ChatUtils.chat(player, "&8&m+-----------------------***-----------------------+");
                             ChatUtils.centeredChat(player, "&a&l" + plugin.eventManager().host().getName() + "'s Tournament #" + tournamentNumber);

@@ -92,6 +92,27 @@ public class CustomPlayer {
     }
 
     /**
+     * Give the player 1 bronze medal.
+     */
+    public void addBronzeMedal() {
+        setBronzeMedals(bronzeMedals + 1);
+    }
+
+    /**
+     * Give the player 1 gold medal.
+     */
+    public void addGoldMedal() {
+        setGoldMedals(goldMedals + 1);
+    }
+
+    /**
+     * Give the player 1 silver medal.
+     */
+    public void addSilverMedal() {
+        setSilverMedals(silverMedals + 1);
+    }
+
+    /**
      * Add 1 to the tournaments hosted counter.
      */
     public void addTournamentHosted() {
@@ -174,6 +195,66 @@ public class CustomPlayer {
             try {
                 PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_settings SET showScoreboard = ? WHERE uuid = ?");
                 statement.setBoolean(1, showScoreboard);
+                statement.setString(2, uuid.toString());
+                statement.executeUpdate();
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    /**
+     * Set the number of bronze medals the player has.
+     * @param bronzeMedals New number of bronze medals.
+     */
+    public void setBronzeMedals(int bronzeMedals) {
+        this.bronzeMedals = bronzeMedals;
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            try {
+                PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET bronze = ? WHERE uuid = ?");
+                statement.setInt(1, bronzeMedals);
+                statement.setString(2, uuid.toString());
+                statement.executeUpdate();
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    /**
+     * Set the number of gold medals the player has.
+     * @param goldMedals New number of gold medals.
+     */
+    public void setGoldMedals(int goldMedals) {
+        this.goldMedals = goldMedals;
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            try {
+                PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET gold = ? WHERE uuid = ?");
+                statement.setInt(1, goldMedals);
+                statement.setString(2, uuid.toString());
+                statement.executeUpdate();
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    /**
+     * Set the number of silver medals the player has.
+     * @param silverMedals New number of silver medals.
+     */
+    public void setSilverMedals(int silverMedals) {
+        this.silverMedals = silverMedals;
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            try {
+                PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET silver = ? WHERE uuid = ?");
+                statement.setInt(1, silverMedals);
                 statement.setString(2, uuid.toString());
                 statement.executeUpdate();
             }
