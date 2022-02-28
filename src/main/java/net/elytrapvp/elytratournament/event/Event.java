@@ -185,9 +185,7 @@ public class Event {
     }
 
     public void nextRound() {
-        System.out.println("Next Round");
         if(plugin.gameManager().getActiveGames().size() > 0) {
-            System.out.println("More Games Left");
             return;
         }
 
@@ -198,14 +196,11 @@ public class Event {
 
                     for(Match match : challonge.getMatches(tournament)) {
                         if(match.getState() == MatchState.COMPLETE) {
-                            System.out.println("Completed Match");
                             continue;
                         }
-                        System.out.println("Incomplete Match");
                         matches.add(match);
                     }
 
-                    System.out.println("Matches: " + matches.size());
                     if(matches.size() > 0) {
                         for(Match match : matches) {
 
