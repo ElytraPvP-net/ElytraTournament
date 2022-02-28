@@ -78,7 +78,7 @@ public class Game {
 
             ChatUtils.chat(player, "");
             ChatUtils.centeredChat(player, "&aScore");
-            ChatUtils.centeredChat(player, "&f" + getScore(player) + " - " + getScore(getOpponent(player)));
+            ChatUtils.centeredChat(player, "&f" + getScore(player) + " &7-&f " + getScore(getOpponent(player)));
         }
         broadcast("&8&m+-----------------------***-----------------------+");
 
@@ -155,7 +155,7 @@ public class Game {
         broadcast(" ");
         for(Player player : getPlayers()) {
             ChatUtils.centeredChat(player, "&aScore");
-            ChatUtils.centeredChat(player, "&f" + getScore(player) + " - " + getScore(getOpponent(player)));
+            ChatUtils.centeredChat(player, "&f" + getScore(player) + " &7-&f " + getScore(getOpponent(player)));
         }
         broadcast("&8&m+-----------------------***-----------------------+");
 
@@ -166,7 +166,7 @@ public class Game {
         }
 
 
-        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &f" + winner.getName() + " &ahas defeated &f" + loser.getName() + " " + getScore(winner) + " - " + getScore(loser) + "&a."));
+        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &f" + winner.getName() + " &ahas defeated &f" + loser.getName() + " &7(&f" + getScore(winner) + " &7-&f " + getScore(loser) + "&7)&a."));
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             for(Player player : getPlayers()) {
