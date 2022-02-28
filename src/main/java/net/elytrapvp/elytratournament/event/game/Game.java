@@ -150,7 +150,7 @@ public class Game {
         broadcastCenter("&a&l" + plugin.eventManager().kit().getName() + " Duel &7- &f&l" + timer.toString());
         broadcast(" ");
         broadcastCenter("&aWinner:");
-        broadcastCenter(winner.getName() + "&a(" + ChatUtils.getFormattedHealthPercent(winner) + "&a)");
+        broadcastCenter(winner.getName() + " &a(" + ChatUtils.getFormattedHealthPercent(winner) + "&a)");
         broadcast(" ");
         for(Player player : getPlayers()) {
             ChatUtils.centeredChat(player, "&aScore");
