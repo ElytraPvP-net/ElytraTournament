@@ -45,10 +45,11 @@ public class EventScoreboard extends CustomScoreboard {
             }
             case WAITING -> {
                 helper.setTitle("&a&lTournament &c(Alpha)");
-                helper.setSlot(14, "&7&m------------------");
-                helper.setSlot(13, "&aHost: &f" + plugin.eventManager().host().getName());
-                helper.setSlot(12, "&aKit: &f" + plugin.eventManager().kit().getName());
-                helper.setSlot(11, "&aBracket: &f" + plugin.eventManager().eventType());
+                helper.setSlot(15, "&7&m------------------");
+                helper.setSlot(14, "&aHost: &f" + plugin.eventManager().host().getName());
+                helper.setSlot(13, "&aKit: &f" + plugin.eventManager().kit().getName());
+                helper.setSlot(12, "&aBracket: &f" + plugin.eventManager().eventType());
+                helper.setSlot(11, "&aTeam: &f1v1 &7(" + plugin.eventManager().bestOf().toString() + "&7)");
                 helper.setSlot(10, "");
                 helper.setSlot(9, "&aPlayers: &f" + Bukkit.getOnlinePlayers().size());
                 helper.setSlot(8, "");
@@ -62,10 +63,14 @@ public class EventScoreboard extends CustomScoreboard {
             }
             case RUNNING -> {
                 helper.setTitle("&a&lTournament &c(Alpha)");
-                helper.setSlot(5, "&7&m------------------");
-                // TODO: Add scoreboard for waiting for match.
-                helper.setSlot(4, "&fEvent is currently");
-                helper.setSlot(3, "&frunning.");
+                helper.setSlot(10, "&7&m------------------");
+                helper.setSlot(9, "&aHost: &f" + plugin.eventManager().host().getName());
+                helper.setSlot(8, "&aKit: &f" + plugin.eventManager().kit().getName());
+                helper.setSlot(7, "&aBracket: &f" + plugin.eventManager().eventType());
+                helper.setSlot(6, "&aTeam: &f1v1 &7(&f" + plugin.eventManager().bestOf().toString() + "&7)");
+                helper.setSlot(5, "");
+                helper.setSlot(4, "&aFighting: &f" + (plugin.gameManager().getActiveGames().size() * 2));
+                helper.setSlot(3, "");
                 helper.setSlot(2, "&7&m------------------");
                 helper.setSlot(1, "&aplay.elytrapvp.net");
             }
