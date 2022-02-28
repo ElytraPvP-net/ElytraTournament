@@ -10,6 +10,7 @@ Maps:
       - Classic
       - Diamond
       - Iron
+      - OP
     arenas:
       '1':
         spawns:
