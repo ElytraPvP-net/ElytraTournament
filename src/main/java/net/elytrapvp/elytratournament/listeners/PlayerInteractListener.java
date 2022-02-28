@@ -4,6 +4,7 @@ import net.elytrapvp.elytratournament.ElytraTournament;
 import net.elytrapvp.elytratournament.event.game.Game;
 import net.elytrapvp.elytratournament.event.game.GameState;
 import net.elytrapvp.elytratournament.guis.SettingsGUI;
+import net.elytrapvp.elytratournament.guis.SpectateGUI;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -48,6 +49,7 @@ public class PlayerInteractListener implements Listener {
         switch (item) {
             case "Settings" -> new SettingsGUI(plugin, player).open(player);
             case "Create Tournament" -> player.chat("/create");
+            case "Spectate" -> new SpectateGUI(plugin).open(player);
         }
     }
 }

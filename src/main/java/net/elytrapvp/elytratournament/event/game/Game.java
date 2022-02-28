@@ -11,6 +11,7 @@ import net.elytrapvp.elytratournament.event.arena.Arena;
 import net.elytrapvp.elytratournament.event.kit.Kit;
 import net.elytrapvp.elytratournament.utils.Timer;
 import net.elytrapvp.elytratournament.utils.chat.ChatUtils;
+import net.elytrapvp.elytratournament.utils.item.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -179,7 +180,7 @@ public class Game {
                 player.spigot().setCollidesWithEntities(true);
                 ((CraftPlayer) player).getHandle().getDataWatcher().watch(9, (byte) 0);
 
-                //ItemUtils.givePartyItems(plugin.getPartyManager(), player);
+                ItemUtils.giveSpectateItems(player);
                 new EventScoreboard(plugin, player);
 
                 for(PotionEffect effect : player.getActivePotionEffects()) {
@@ -282,6 +283,14 @@ public class Game {
         for(Player player : getPlayers()) {
             ChatUtils.centeredChat(player, message);
         }
+    }
+
+    /**
+     * Get the arena being used in the game.
+     * @return Arena being used.
+     */
+    public Arena getArena() {
+        return arena;
     }
 
     /**

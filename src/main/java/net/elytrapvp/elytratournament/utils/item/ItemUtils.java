@@ -27,4 +27,18 @@ public class ItemUtils {
             player.getInventory().setItem(0, createTournamentItem);
         }
     }
+
+    public static void giveSpectateItems(Player player) {
+        player.getInventory().clear();
+
+        ItemStack spectate = new ItemBuilder(Material.NETHER_STAR)
+                .setDisplayName("&a&lSpectate")
+                .build();
+        player.getInventory().setItem(0, spectate);
+
+        ItemStack settingsItem = new ItemBuilder(Material.REDSTONE_COMPARATOR)
+                .setDisplayName("&a&lSettings")
+                .build();
+        player.getInventory().setItem(8, settingsItem);
+    }
 }
