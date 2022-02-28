@@ -52,7 +52,9 @@ public class Arena {
             double x = maps.getDouble(path + "spectate" + ".X");
             double y = maps.getDouble(path + "spectate" + ".Y");
             double z = maps.getDouble(path + "spectate" + ".Z");
-            spectateSpawn = new Location(Bukkit.getWorld(world), x, y ,z);
+            float pitch = (float) maps.getDouble(path + "spectate" + ".Pitch");
+            float yaw = (float) maps.getDouble(path + "spectate" + ".Yaw");
+            spectateSpawn = new Location(Bukkit.getWorld(world), x, y ,z, yaw, pitch);
         }
     }
 
