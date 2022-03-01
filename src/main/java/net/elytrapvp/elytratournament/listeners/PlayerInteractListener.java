@@ -47,9 +47,20 @@ public class PlayerInteractListener implements Listener {
         }
 
         switch (item) {
-            case "Settings" -> new SettingsGUI(plugin, player).open(player);
-            case "Create Tournament" -> player.chat("/create");
-            case "Spectate" -> new SpectateGUI(plugin).open(player);
+            case "Settings" -> {
+                new SettingsGUI(plugin, player).open(player);
+                event.setCancelled(true);
+            }
+
+            case "Create Tournament" -> {
+                player.chat("/create");
+                event.setCancelled(true);
+            }
+
+            case "Spectate" -> {
+                new SpectateGUI(plugin).open(player);
+                event.setCancelled(true);
+            }
         }
     }
 }
