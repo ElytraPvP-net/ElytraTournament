@@ -228,7 +228,7 @@ public class Game {
                 }
             }
 
-            plugin.eventManager().activeEvent().nextRound();
+            //plugin.eventManager().activeEvent().nextRound();
         }, 120);
     }
 

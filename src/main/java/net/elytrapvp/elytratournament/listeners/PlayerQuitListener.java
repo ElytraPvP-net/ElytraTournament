@@ -2,6 +2,7 @@ package net.elytrapvp.elytratournament.listeners;
 
 import net.elytrapvp.elytratournament.ElytraTournament;
 import net.elytrapvp.elytratournament.event.EventStatus;
+import net.elytrapvp.elytratournament.event.game.Game;
 import net.elytrapvp.elytratournament.utils.chat.ChatUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,6 +21,15 @@ public class PlayerQuitListener implements Listener {
         Player player = event.getPlayer();
         plugin.customPlayerManager().removePlayer(player);
         event.setQuitMessage(ChatUtils.translate("&8[&c-&8] &c" + player.getName()));
+
+        if(plugin.eventManager().activeEvent() != null) {
+            plugin.eventManager().activeEvent().getPlayers().remove(plugin.eventManager().activeEvent().getPlayerID(player));
+        }
+
+        Game game = plugin.gameManager().getGame(player);
+        if(game != null) {
+            game.playerDisconnect(player);
+        }
 
         // Cancel tournament if the player is the host.
         if(plugin.eventManager().eventStatus() == EventStatus.WAITING
