@@ -29,6 +29,11 @@ public class PlayerJoinListener implements Listener {
         player.setGameMode(GameMode.ADVENTURE);
         event.setJoinMessage(ChatUtils.translate("&8[&a+&8] &a" + player.getName()));
 
-        ItemUtils.giveLobbyItems(player);
+        if(plugin.eventManager().activeEvent() != null) {
+            ItemUtils.giveSpectateItems(player);
+        }
+        else {
+            ItemUtils.giveLobbyItems(player);
+        }
     }
 }
