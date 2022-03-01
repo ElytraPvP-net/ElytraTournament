@@ -53,6 +53,11 @@ public class Game {
      * Starts a round.
      */
     public void start() {
+        for(Location location : blocks.keySet()) {
+            location.getWorld().getBlockAt(location).setType(blocks.get(location));
+
+        }
+
         timer = new Timer(plugin);
 
         int spawn = 0;
