@@ -373,6 +373,16 @@ public class Event {
 
             Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aThe tournament has been started."));
 
+            // Give spectator items.
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    for(Player player : Bukkit.getOnlinePlayers()) {
+                        ItemUtils.giveSpectateItems(player);
+                    }
+                }
+            }.runTask(plugin);
+
             taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, ()-> {
                 try {
                     List<Match> matches = new ArrayList<>();
