@@ -361,7 +361,7 @@ public class Game {
         broadcast("&a" + player.getName() + " disconnected.");
         player.getLocation().getWorld().strikeLightning(player.getLocation());
 
-        setScore(getOpponent(player), plugin.eventManager().bestOf().getNeededWins());
+        setScore(getOpponent(player), plugin.eventManager().bestOf().getNeededWins() - 1);
         end(getOpponent(player), player);
     }
 
