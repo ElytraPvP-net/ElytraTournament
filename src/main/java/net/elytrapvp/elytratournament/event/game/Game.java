@@ -195,33 +195,33 @@ public class Game {
             plugin.arenaManager().addArena(arena);
 
             plugin.gameManager().destroyGame(this);
+
+            Bukkit.getScheduler().runTaskAsynchronously(plugin, ()-> {
+                try {
+                    Event event = plugin.eventManager().activeEvent();
+                    Player player1 = event.getPlayer(match.getPlayer1Id());
+
+                    MatchQuery.MatchQueryBuilder builder;
+
+                    if(winner.equals(player1)) {
+                        builder = MatchQuery.builder()
+                                .winnerId(event.getPlayerID(winner))
+                                .scoresCsv(getScore(winner) + "-" + getScore(loser));
+                    }
+                    else {
+                        builder = MatchQuery.builder()
+                                .winnerId(event.getPlayerID(winner))
+                                .scoresCsv(getScore(loser) + "-" + getScore(winner));
+                    }
+
+                    Challonge challonge = plugin.eventManager().activeEvent().getChallonge();
+
+                    challonge.updateMatch(match, builder.build());
+                } catch (DataAccessException exception) {
+                    exception.printStackTrace();
+                }
+            });
         }, 100);
-
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, ()-> {
-            try {
-                Event event = plugin.eventManager().activeEvent();
-                Player player1 = event.getPlayer(match.getPlayer1Id());
-
-                MatchQuery.MatchQueryBuilder builder;
-
-                if(winner.equals(player1)) {
-                    builder = MatchQuery.builder()
-                            .winnerId(event.getPlayerID(winner))
-                            .scoresCsv(getScore(winner) + "-" + getScore(loser));
-                }
-                else {
-                    builder = MatchQuery.builder()
-                            .winnerId(event.getPlayerID(winner))
-                            .scoresCsv(getScore(loser) + "-" + getScore(winner));
-                }
-
-                Challonge challonge = plugin.eventManager().activeEvent().getChallonge();
-
-                challonge.updateMatch(match, builder.build());
-            } catch (DataAccessException exception) {
-                exception.printStackTrace();
-            }
-        });
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             for(Location location : blocks.keySet()) {
