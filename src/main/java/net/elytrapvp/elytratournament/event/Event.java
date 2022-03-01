@@ -363,7 +363,6 @@ public class Event {
 
 
         Bukkit.setWhitelist(false);
-        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aThe tournament has been started."));
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, ()-> {
             try {
@@ -371,6 +370,8 @@ public class Event {
             } catch (DataAccessException e) {
                 e.printStackTrace();
             }
+
+            Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aThe tournament has been started."));
 
             taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, ()-> {
                 try {
