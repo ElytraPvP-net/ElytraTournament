@@ -5,14 +5,23 @@ import net.elytrapvp.elytratournament.event.game.Game;
 import net.elytrapvp.elytratournament.event.game.GameState;
 import net.elytrapvp.elytratournament.guis.SettingsGUI;
 import net.elytrapvp.elytratournament.guis.SpectateGUI;
+import net.elytrapvp.elytratournament.utils.chat.ChatUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class PlayerInteractListener implements Listener {
     private ElytraTournament plugin;
+    private final Set<Player> pearlCooldown = new HashSet<>();
+
 
     public PlayerInteractListener(ElytraTournament plugin) {
         this.plugin = plugin;
@@ -30,6 +39,20 @@ public class PlayerInteractListener implements Listener {
             // Fixes visual glitch with throwables during countdown.
             player.getInventory().setItem(player.getInventory().getHeldItemSlot(), player.getItemInHand());
             return;
+        }
+
+        // Checks for the ender pearl cooldown.
+        if(event.getItem() != null && event.getItem().getType() == Material.ENDER_PEARL && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+            if(pearlCooldown.contains(player)) {
+                ChatUtils.chat(player, "&cThat item is currently on cooldown.");
+                event.setCancelled(true);
+                return;
+            }
+
+            if(plugin.eventManager().kit().hasPearlCooldown()) {
+                pearlCooldown.add(player);
+                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> pearlCooldown.remove(player), 200);
+            }
         }
 
         // Exit if the item is null.
