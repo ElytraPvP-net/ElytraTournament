@@ -1,6 +1,7 @@
 package net.elytrapvp.elytratournament.commands;
 
 import net.elytrapvp.elytratournament.ElytraTournament;
+import net.elytrapvp.elytratournament.event.EventStatus;
 import net.elytrapvp.elytratournament.utils.chat.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -21,6 +22,12 @@ public class StartCMD extends AbstractCommand {
         // Make sure no other tournaments are currently running.
         if(plugin.eventManager().activeEvent() != null) {
             ChatUtils.chat(sender, "&c&lError &8» &cThere is already a tournament active!");
+            return;
+        }
+
+        // Make sure a tournament exists before starting one.
+        if(plugin.eventManager().eventStatus() != EventStatus.WAITING) {
+            ChatUtils.chat(sender, "&c&lError &8» &cYou have to create a tournament first!!");
             return;
         }
 
