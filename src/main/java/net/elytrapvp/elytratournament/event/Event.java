@@ -371,7 +371,17 @@ public class Event {
                 e.printStackTrace();
             }
 
-            Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aThe tournament has been started."));
+            for(Player player : Bukkit.getOnlinePlayers()) {
+                ChatUtils.chat(player, "&8&m+-----------------------***-----------------------+");
+                ChatUtils.centeredChat(player, "&a&l" + hostName + "'s Tournament #" + tournamentNumber);
+                ChatUtils.chat(player, "");
+                ChatUtils.centeredChat(player, "&aKit: &f" + plugin.eventManager().kit().getName());
+                ChatUtils.centeredChat(player, "&aTeams: &f1v1 &7(" + plugin.eventManager().bestOf() + ")");
+                ChatUtils.chat(player, "");
+                ChatUtils.centeredChat(player, "&aBracket: &fhttps://challonge.com/" + tournament.getUrl());
+                ChatUtils.chat(player, "");
+                ChatUtils.chat(player, "&8&m+-----------------------***-----------------------+");
+            }
 
             // Give spectator items.
             new BukkitRunnable() {
