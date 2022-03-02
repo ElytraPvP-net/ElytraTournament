@@ -7,11 +7,13 @@ import net.elytrapvp.elytratournament.utils.item.ItemBuilder;
 import net.elytrapvp.elytratournament.utils.item.ItemUtils;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
+import pt.foxspigot.jar.knockback.KnockbackModule;
 //import pt.foxspigot.jar.knockback.KnockbackModule;
 
 import java.util.*;
@@ -154,7 +156,7 @@ public class Kit {
             player.addPotionEffect(effect);
         }
 
-        //((CraftPlayer) player).getHandle().setKnockback(KnockbackModule.getByName(knockback));
+        ((CraftPlayer) player).getHandle().setKnockback(KnockbackModule.getByName(knockback));
     }
 
     /**
