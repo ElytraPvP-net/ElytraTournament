@@ -34,8 +34,7 @@ import java.util.*;
 public class Event {
     private final ElytraTournament plugin;
     private final Map<Long, Player> players = new HashMap<>();
-    private final Map<Long, Participant> eventParticipants = new HashMap<>();
-    private int tournamentNumber = 0;
+    private final int tournamentNumber;
     private final String hostName;
     private int taskID;
 
@@ -90,7 +89,6 @@ public class Event {
                         @Override
                         public void run() {
                             players.put(participant.getId(), Bukkit.getPlayer(participant.getName()));
-                            eventParticipants.put(participant.getId(), participant);
                         }
                     }.runTask(plugin);
                 }
@@ -109,10 +107,6 @@ public class Event {
                 }
             }.runTask(plugin);
         });
-    }
-
-    public Participant getParticipant(Long id) {
-        return eventParticipants.get(id);
     }
 
     /**
@@ -139,213 +133,8 @@ public class Event {
         return null;
     }
 
-    /**
-     * Start the event.
-     */
-    private void runsEvent() {
-        // Set the status to RUNNING to update the scoreboard.
-        plugin.eventManager().eventStatus(EventStatus.RUNNING);
-
-        // Update scoreboard
-        Bukkit.getOnlinePlayers().forEach(player -> new EventScoreboard(plugin, player));
-
-        Bukkit.setWhitelist(false);
-        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aThe tournament has been started."));
-
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-            try {
-                challonge.startTournament(tournament);
-                startEvent();
-                /*
-                for(Match match : challonge.getMatches(tournament)) {
-
-                    // Make sure the match hasn't been done yet.
-                    if(match.getCompletedAt() != null) {
-                        return;
-                    }
-
-                    if(match.getPlayer1Id() != null && match.getPlayer2Id() != null) {
-                        Player player1 = getPlayer(match.getPlayer1Id());
-                        Player player2 = getPlayer(match.getPlayer2Id());
-
-                        if(player1 == null) {
-                            match.setForfeited(true);
-                            match.setWinnerId(getPlayerID(player2));
-                            continue;
-                        }
-                        else if(player2 == null) {
-                            match.setForfeited(true);
-                            match.setWinnerId(getPlayerID(player1));
-                            continue;
-                        }
-
-                        challonge.markMatchAsUnderway(match);
-
-                        new BukkitRunnable() {
-                            @Override
-                            public void run() {
-                                Game game = plugin.gameManager().createGame(match);
-                                game.addPlayers(player1, player2);
-                                game.start();
-                            }
-                        }.runTask(plugin);
-                    }
-                }
-                 */
-            }
-            catch (DataAccessException exception) {
-                ChatUtils.chat(plugin.eventManager().host(), "&c&lError &8» &cSomething went wrong while starting the tournament! Check console for details.");
-                exception.printStackTrace();
-            }
-        });
-    }
-
     public Challonge getChallonge() {
         return challonge;
-    }
-
-    public void nextRound() {
-        if(plugin.gameManager().getActiveGames().size() > 0) {
-            return;
-        }
-
-        Bukkit.getScheduler().runTaskLater(plugin, ()-> {
-            Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-                try {
-                    List<Match> matches = new ArrayList<>();
-
-                    for(Match match : challonge.getMatches(tournament)) {
-                        if(match.getState() == MatchState.COMPLETE) {
-                            continue;
-                        }
-                        matches.add(match);
-                    }
-
-                    if(matches.size() > 0) {
-                        for(Match match : matches) {
-
-                            if(match.getPlayer1Id() != null && match.getPlayer2Id() != null) {
-                                Player player1 = getPlayer(match.getPlayer1Id());
-                                Player player2 = getPlayer(match.getPlayer2Id());
-
-                                if(player1 == null) {
-                                    match.setForfeited(true);
-                                    match.setWinnerId(getPlayerID(player2));
-                                    continue;
-                                }
-                                else if(player2 == null) {
-                                    match.setForfeited(true);
-                                    match.setWinnerId(getPlayerID(player1));
-                                    continue;
-                                }
-
-                                challonge.markMatchAsUnderway(match);
-
-                                new BukkitRunnable() {
-                                    @Override
-                                    public void run() {
-                                        Game game = plugin.gameManager().createGame(match);
-                                        game.addPlayers(player1, player2);
-                                        game.start();
-                                    }
-                                }.runTask(plugin);
-                            }
-                        }
-                    }
-                    else {
-                        challonge.finalizeTournament(tournament);
-
-                        Map<Participant, Integer> results = new HashMap<>();
-
-                        for(Participant participant : challonge.getParticipants(tournament)) {
-                            results.put(participant, participant.getFinalRank());
-                        }
-
-                        Map<Participant, Integer> rankings = MapUtils.sortByValue(results);
-                        List<Participant> top = new ArrayList<>(rankings.keySet());
-
-
-                        for(Player player : Bukkit.getOnlinePlayers()) {
-                            ChatUtils.chat(player, "&8&m+-----------------------***-----------------------+");
-                            ChatUtils.centeredChat(player, "&a&l" + hostName + "'s Tournament #" + tournamentNumber);
-                            ChatUtils.centeredChat(player, "&aKit: &f" + plugin.eventManager().kit().getName());
-                            ChatUtils.chat(player, "");
-                            ChatUtils.centeredChat(player, "&6&lGold: &f" + top.get(0).getName());
-                            ChatUtils.centeredChat(player, "&f&lSilver: &f" + top.get(1).getName());
-
-                            if(top.size() >= 3) {
-                                ChatUtils.centeredChat(player, "&c&lBronze: &f" + top.get(2).getName());
-                            }
-                            else {
-                                ChatUtils.centeredChat(player, "&c&lBronze: &fNone");
-                            }
-                            ChatUtils.chat(player, "&8&m+-----------------------***-----------------------+");
-                        }
-
-                        /*
-                        Map<Player, Integer> players = new HashMap<>();
-
-                        for(Participant participant : challonge.getParticipants(tournament)) {
-                            players.put(getPlayer(participant.getId()), participant.getFinalRank());
-                        }
-
-                        Map<Player, Integer> rankings = MapUtils.sortByValue(players);
-                        List<Player> topPlayers = new ArrayList<>();
-                        topPlayers.addAll(rankings.keySet());
-
-                        CustomPlayer first = plugin.customPlayerManager().getPlayer(topPlayers.get(0));
-                        first.addGoldMedal();
-
-                        CustomPlayer second = plugin.customPlayerManager().getPlayer(topPlayers.get(1));
-                        second.addSilverMedal();
-
-                        if(topPlayers.size() > 3) {
-                            CustomPlayer third = plugin.customPlayerManager().getPlayer(topPlayers.get(2));
-                            third.addBronzeMedal();
-                        }
-
-
-
-                        for(Player player : Bukkit.getOnlinePlayers()) {
-                            ChatUtils.chat(player, "&8&m+-----------------------***-----------------------+");
-                            ChatUtils.centeredChat(player, "&a&l" + plugin.eventManager().host().getName() + "'s Tournament #" + tournamentNumber);
-                            ChatUtils.chat(player, "");
-                            ChatUtils.centeredChat(player, "&aKit: &f" + plugin.eventManager().kit().getName());
-                            ChatUtils.chat(player, "");
-                            ChatUtils.centeredChat(player, "&6&lGold: &f" + topPlayers.get(0).getName());
-                            ChatUtils.centeredChat(player, "&f&lSilver: &f" + topPlayers.get(1).getName());
-
-                            if(topPlayers.size() >= 3) {
-                                ChatUtils.centeredChat(player, "&c&lBronze: &f" + topPlayers.get(2).getName());
-                            }
-                            else {
-                                ChatUtils.centeredChat(player, "&c&lBronze: &fNone");
-                            }
-                            ChatUtils.chat(player, "&8&m+-----------------------***-----------------------+");
-                        }
-
-                        */
-
-                        Bukkit.getScheduler().runTaskLater(plugin, ()-> {
-                            plugin.eventManager().eventStatus(EventStatus.NONE);
-                            plugin.eventManager().activeEvent(null);
-                            plugin.eventManager().bestOf(BestOf.NONE);
-                            plugin.eventManager().host(null);
-                            plugin.eventManager().kit(null);
-
-                            for(Player player : Bukkit.getOnlinePlayers()) {
-                                player.teleport(LocationUtils.getSpawn(plugin));
-                                ItemUtils.giveLobbyItems(player);
-                            }
-                        }, 200);
-                    }
-                }
-                catch (DataAccessException exception) {
-                    ChatUtils.chat(plugin.eventManager().host(), "&c&lError &8» &cSomething went wrong starting the next round! Check console for details.");
-                    exception.printStackTrace();
-                }
-            });
-        }, 100);
     }
 
     public Map<Long, Player> getPlayers() {
@@ -357,9 +146,7 @@ public class Event {
         plugin.eventManager().eventStatus(EventStatus.RUNNING);
 
         // Update scoreboard
-        Bukkit.getScheduler().runTask(plugin, ()-> {
-            Bukkit.getOnlinePlayers().forEach(player -> new EventScoreboard(plugin, player));
-        });
+        Bukkit.getScheduler().runTask(plugin, ()-> Bukkit.getOnlinePlayers().forEach(player -> new EventScoreboard(plugin, player)));
 
 
         Bukkit.setWhitelist(false);
@@ -522,6 +309,9 @@ public class Event {
         });
     }
 
+    /**
+     * Stops the current event.
+     */
     public void stopEvent() {
         Bukkit.getScheduler().cancelTask(taskID);
     }
