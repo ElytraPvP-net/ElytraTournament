@@ -475,6 +475,7 @@ public class Event {
                         for(Player player : Bukkit.getOnlinePlayers()) {
                             ChatUtils.chat(player, "&8&m+-----------------------***-----------------------+");
                             ChatUtils.centeredChat(player, "&a&l" + hostName + "'s Tournament #" + tournamentNumber);
+                            ChatUtils.chat(player, "");
                             ChatUtils.centeredChat(player, "&aKit: &f" + plugin.eventManager().kit().getName());
                             ChatUtils.chat(player, "");
                             ChatUtils.centeredChat(player, "&6&lGold: &f" + top.get(0).getName());
