@@ -12,3 +12,6 @@ commands:
     description: Start a tournament
   cancel:
     description: Cancel a tournmanet
+  bracket:
+    description: Get the current bracket.
+    aliases: [matches]

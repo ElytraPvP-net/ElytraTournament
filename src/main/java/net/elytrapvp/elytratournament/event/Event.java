@@ -141,6 +141,10 @@ public class Event {
         return players;
     }
 
+    public Tournament getTournament() {
+        return tournament;
+    }
+
     public void startEvent() {
         // Set the status to RUNNING to update the scoreboard.
         plugin.eventManager().eventStatus(EventStatus.RUNNING);
