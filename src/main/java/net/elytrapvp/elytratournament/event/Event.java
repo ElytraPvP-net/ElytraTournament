@@ -97,6 +97,10 @@ public class Event {
                 tournament = null;
                 ChatUtils.chat(host, "&c&lError &8» &cSomething went wrong while creating the tournament! Check console for details.");
                 exception.printStackTrace();
+
+                plugin.eventManager().activeEvent(null);
+                plugin.eventManager().eventStatus(EventStatus.NONE);
+                Bukkit.setWhitelist(false);
             }
 
             // Run the tournament.
