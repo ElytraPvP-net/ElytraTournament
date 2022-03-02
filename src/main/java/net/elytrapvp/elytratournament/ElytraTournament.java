@@ -23,6 +23,9 @@ public final class ElytraTournament extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // Fix whitelist if it gets stuck.
+        Bukkit.setWhitelist(false);
+
         // Load configuration files.
         settingsManager = new SettingsManager(this);
 
