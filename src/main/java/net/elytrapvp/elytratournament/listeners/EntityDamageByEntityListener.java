@@ -32,6 +32,7 @@ public class EntityDamageByEntityListener implements Listener {
 
         // Exit if player is not in a game.
         if(game == null) {
+            event.setCancelled(true);
             return;
         }
 
