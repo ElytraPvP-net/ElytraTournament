@@ -452,6 +452,25 @@ public class Event {
                         Map<Participant, Integer> rankings = MapUtils.sortByValue(results);
                         List<Participant> top = new ArrayList<>(rankings.keySet());
 
+                        Player gold = Bukkit.getPlayer(top.get(0).getName());
+                        if(gold != null) {
+                            CustomPlayer customPlayer = plugin.customPlayerManager().getPlayer(gold);
+                            customPlayer.addGoldMedal();
+                        }
+
+                        Player silver = Bukkit.getPlayer(top.get(1).getName());
+                        if(silver != null) {
+                            CustomPlayer customPlayer = plugin.customPlayerManager().getPlayer(silver);
+                            customPlayer.addSilverMedal();
+                        }
+
+                        if(top.size() >= 3) {
+                            Player bronze = Bukkit.getPlayer(top.get(2).getName());
+                            if(bronze != null) {
+                                CustomPlayer customPlayer = plugin.customPlayerManager().getPlayer(bronze);
+                                customPlayer.addBronzeMedal();
+                            }
+                        }
 
                         for(Player player : Bukkit.getOnlinePlayers()) {
                             ChatUtils.chat(player, "&8&m+-----------------------***-----------------------+");
