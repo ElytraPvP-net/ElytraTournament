@@ -9,11 +9,13 @@ import net.elytrapvp.elytratournament.utils.chat.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -58,6 +60,22 @@ public class PlayerInteractListener implements Listener {
         // Exit if the item is null.
         if(event.getItem() == null)
             return;
+
+        if(event.getItem().getType() == Material.MUSHROOM_SOUP) {
+            event.setCancelled(true);
+            player.getInventory().setItem(player.getInventory().getHeldItemSlot(), new ItemStack(Material.AIR));
+
+            double health = player.getHealth();
+            health += 5;
+
+            if(health > player.getMaxHealth()) {
+                health = player.getMaxHealth();
+            }
+
+            player.setHealth(health);
+            player.playSound(player.getLocation(), Sound.DRINK,1 ,1);
+            return;
+        }
 
         // Exit if item meta is null.
         if(event.getItem().getItemMeta() == null)
