@@ -389,6 +389,7 @@ public class Game {
         player.teleport(arena.getSpectateSpawn());
         player.spigot().setCollidesWithEntities(true);
         ((CraftPlayer) player).getHandle().getDataWatcher().watch(9, (byte) 0);
+        player.setFireTicks(0);
 
         // Prevents stuff from breaking if the game is already over.
         if(gameState == GameState.END) {
