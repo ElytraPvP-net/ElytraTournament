@@ -181,6 +181,7 @@ public class Game {
                 player.setFlying(false);
                 player.setMaxHealth(20.0);
                 player.setHealth(20.0);
+                player.setFoodLevel(20);
                 player.teleport(arena.getSpectateSpawn());
                 player.spigot().setCollidesWithEntities(true);
                 ((CraftPlayer) player).getHandle().getDataWatcher().watch(9, (byte) 0);
@@ -386,6 +387,7 @@ public class Game {
         player.setFlying(false);
         player.setMaxHealth(20.0);
         player.setHealth(20.0);
+        player.setFoodLevel(20);
         player.teleport(arena.getSpectateSpawn());
         player.spigot().setCollidesWithEntities(true);
         ((CraftPlayer) player).getHandle().getDataWatcher().watch(9, (byte) 0);
