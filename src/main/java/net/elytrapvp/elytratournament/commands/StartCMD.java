@@ -1,5 +1,8 @@
 package net.elytrapvp.elytratournament.commands;
 
+import com.google.common.collect.Iterables;
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import net.elytrapvp.elytratournament.ElytraTournament;
 import net.elytrapvp.elytratournament.event.EventStatus;
 import net.elytrapvp.elytratournament.utils.chat.ChatUtils;
@@ -47,6 +50,12 @@ public class StartCMD extends AbstractCommand {
 
         Bukkit.setWhitelist(true);
         Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aGenerating Brackets"));
+
+        // Update bungeecord
+        ByteArrayDataOutput out = ByteStreams.newDataOutput();
+        out.writeUTF("cancel");
+        Iterables.getFirst(Bukkit.getOnlinePlayers(), null).sendPluginMessage(plugin, "Tournament", out.toByteArray());
+
         plugin.eventManager().create();
     }
 }
