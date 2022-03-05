@@ -198,28 +198,35 @@ public class Game {
             plugin.gameManager().destroyGame(this);
 
             Bukkit.getScheduler().runTaskAsynchronously(plugin, ()-> {
-                try {
-                    Event event = plugin.eventManager().activeEvent();
-                    Player player1 = event.getPlayer(match.getPlayer1Id());
+                Event event = plugin.eventManager().activeEvent();
+                Player player1 = event.getPlayer(match.getPlayer1Id());
 
-                    MatchQuery.MatchQueryBuilder builder;
+                MatchQuery.MatchQueryBuilder builder;
 
-                    if(winner.equals(player1)) {
-                        builder = MatchQuery.builder()
-                                .winnerId(event.getPlayerID(winner))
-                                .scoresCsv(getScore(winner) + "-" + getScore(loser));
+                if(winner.equals(player1)) {
+                    builder = MatchQuery.builder()
+                            .winnerId(event.getPlayerID(winner))
+                            .scoresCsv(getScore(winner) + "-" + getScore(loser));
+                }
+                else {
+                    builder = MatchQuery.builder()
+                            .winnerId(event.getPlayerID(winner))
+                            .scoresCsv(getScore(loser) + "-" + getScore(winner));
+                }
+
+                Challonge challonge = plugin.eventManager().activeEvent().getChallonge();
+
+                boolean sent = false;
+                while(!sent) {
+                    try {
+                        challonge.updateMatch(match, builder.build());
+                        sent = true;
+                        Thread.sleep(1000);
                     }
-                    else {
-                        builder = MatchQuery.builder()
-                                .winnerId(event.getPlayerID(winner))
-                                .scoresCsv(getScore(loser) + "-" + getScore(winner));
+                    catch (DataAccessException | InterruptedException exception) {
+                        exception.printStackTrace();
                     }
 
-                    Challonge challonge = plugin.eventManager().activeEvent().getChallonge();
-
-                    challonge.updateMatch(match, builder.build());
-                } catch (DataAccessException exception) {
-                    exception.printStackTrace();
                 }
             });
         }, 100);

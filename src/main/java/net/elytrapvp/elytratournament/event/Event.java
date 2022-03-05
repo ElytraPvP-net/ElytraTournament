@@ -117,7 +117,6 @@ public class Event {
                 public void run() {
                     // Add 1 to tournaments played counter.
                     plugin.customPlayerManager().getPlayers().forEach(CustomPlayer::addTournamentPlayed);
-
                     startEvent();
                 }
             }.runTask(plugin);
@@ -199,7 +198,7 @@ public class Event {
                 }
             }.runTask(plugin);
 
-            taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, ()-> {
+            taskID = Bukkit.getScheduler().scheduleAsyncRepeatingTask(plugin, ()-> {
                 try {
                     List<Match> matches = new ArrayList<>();
 
@@ -242,7 +241,24 @@ public class Event {
                                     continue;
                                 }
 
-                                challonge.markMatchAsUnderway(match);
+                                boolean sent = false;
+                                while (!sent) {
+                                    try {
+                                        challonge.markMatchAsUnderway(match);
+                                        sent = true;
+                                        Thread.sleep(1000);
+                                    }
+                                    catch (DataAccessException | InterruptedException exception) {
+                                        exception.printStackTrace();
+                                    }
+                                }
+
+                                try {
+                                    Thread.sleep(100);
+                                }
+                                catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
 
                                 new BukkitRunnable() {
                                     @Override
