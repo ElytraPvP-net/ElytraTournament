@@ -26,6 +26,9 @@ public class CustomPlayer {
     int goldMedals = 0;
     int silverMedals = 0;
     int bronzeMedals = 0;
+    int totalMedals = 0;
+    int points = 0;
+    int tournamentsPlayed = 0;
 
     // Settings
     private boolean showScoreboard;
@@ -55,6 +58,9 @@ public class CustomPlayer {
                     goldMedals = results.getInt(3);
                     silverMedals = results.getInt(4);
                     bronzeMedals = results.getInt(5);
+                    totalMedals = results.getInt(6);
+                    points = results.getInt(7);
+                    tournamentsPlayed = results.getInt(8);
                 }
                 else {
                     PreparedStatement statement2 = plugin.mySQL().getConnection().prepareStatement("INSERT INTO tournament_statistics (uuid) VALUES (?)");
@@ -96,6 +102,8 @@ public class CustomPlayer {
      */
     public void addBronzeMedal() {
         setBronzeMedals(bronzeMedals + 1);
+        setTotalMedals(totalMedals + 1);
+        addPoints(2);
     }
 
     /**
@@ -103,6 +111,16 @@ public class CustomPlayer {
      */
     public void addGoldMedal() {
         setGoldMedals(goldMedals + 1);
+        setTotalMedals(totalMedals + 1);
+        addPoints(4);
+    }
+
+    /**
+     * Add points to the player.
+     * @param points Points to add.
+     */
+    public void addPoints(int points) {
+        setPoints(this.points + points);
     }
 
     /**
@@ -110,6 +128,8 @@ public class CustomPlayer {
      */
     public void addSilverMedal() {
         setSilverMedals(silverMedals + 1);
+        setTotalMedals(totalMedals + 1);
+        addPoints(3);
     }
 
     /**
@@ -117,6 +137,14 @@ public class CustomPlayer {
      */
     public void addTournamentHosted() {
         setTournamentsHosted(tournamentsHosted + 1);
+    }
+
+    /**
+     * Add 1 to the tournaments played counter.
+     */
+    public void addTournamentPlayed() {
+        setTournamentsPlayed(tournamentsPlayed + 1);
+        addPoints(1);
     }
 
     /**
@@ -245,6 +273,26 @@ public class CustomPlayer {
     }
 
     /**
+     * Set the amount of points this person has.
+     * @param points New number of points.
+     */
+    public void setPoints(int points) {
+        this.points = points;
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            try {
+                PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET hosted = ? WHERE uuid = ?");
+                statement.setInt(1, points);
+                statement.setString(2, uuid.toString());
+                statement.executeUpdate();
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    /**
      * Set the number of silver medals the player has.
      * @param silverMedals New number of silver medals.
      */
@@ -265,6 +313,26 @@ public class CustomPlayer {
     }
 
     /**
+     * Set the number of medals the player has.
+     * @param totalMedals New number of medals.
+     */
+    public void setTotalMedals(int totalMedals) {
+        this.totalMedals = totalMedals;
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            try {
+                PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET total = ? WHERE uuid = ?");
+                statement.setInt(1, totalMedals);
+                statement.setString(2, uuid.toString());
+                statement.executeUpdate();
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    /**
      * Set the amount of tournaments this person has hosted.
      * @param tournamentsHosted Number of tournaments hosted.
      */
@@ -275,6 +343,26 @@ public class CustomPlayer {
             try {
                 PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET hosted = ? WHERE uuid = ?");
                 statement.setInt(1, tournamentsHosted);
+                statement.setString(2, uuid.toString());
+                statement.executeUpdate();
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    /**
+     * Set the amount of tournaments this person has played in.
+     * @param tournamentsPlayed Number of tournaments played in.
+     */
+    public void setTournamentsPlayed(int tournamentsPlayed) {
+        this.tournamentsPlayed = tournamentsPlayed;
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            try {
+                PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET played = ? WHERE uuid = ?");
+                statement.setInt(1, tournamentsPlayed);
                 statement.setString(2, uuid.toString());
                 statement.executeUpdate();
             }
