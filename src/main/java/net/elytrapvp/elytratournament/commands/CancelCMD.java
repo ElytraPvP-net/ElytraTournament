@@ -1,5 +1,8 @@
 package net.elytrapvp.elytratournament.commands;
 
+import com.google.common.collect.Iterables;
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import net.elytrapvp.elytratournament.ElytraTournament;
 import net.elytrapvp.elytratournament.event.EventScoreboard;
 import net.elytrapvp.elytratournament.event.EventStatus;
@@ -31,6 +34,11 @@ public class CancelCMD extends AbstractCommand {
 
                 // Update Scoreboard
                 Bukkit.getOnlinePlayers().forEach(player -> new EventScoreboard(plugin, player));
+
+                // Update bungeecord
+                ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                out.writeUTF("cancel");
+                Iterables.getFirst(Bukkit.getOnlinePlayers(), null).sendPluginMessage(plugin, "Tournament", out.toByteArray());
             }
         }
     }

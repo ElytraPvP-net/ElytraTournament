@@ -69,6 +69,9 @@ public final class ElytraTournament extends JavaPlugin {
 
         // Update scoreboard
         new ScoreboardUpdate(this).runTaskTimer(this, 20L, 20L);
+
+        // Enable BungeeCord messaging.
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "Tournament");
     }
 
     @Override

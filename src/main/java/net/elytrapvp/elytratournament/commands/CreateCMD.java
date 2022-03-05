@@ -1,5 +1,8 @@
 package net.elytrapvp.elytratournament.commands;
 
+import com.google.common.collect.Iterables;
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import net.elytrapvp.elytratournament.ElytraTournament;
 import net.elytrapvp.elytratournament.event.BestOf;
 import net.elytrapvp.elytratournament.event.EventScoreboard;
@@ -121,6 +124,11 @@ public class CreateCMD extends AbstractCommand {
                     plugin.eventManager().bestOf(BestOf.ONE);
                     plugin.eventManager().eventStatus(EventStatus.WAITING);
                     p.closeInventory();
+
+                    // Update bungeecord
+                    ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                    out.writeUTF("host-" + p.getName() + "-" + plugin.eventManager().kit().getName());
+                    Iterables.getFirst(Bukkit.getOnlinePlayers(), null).sendPluginMessage(plugin, "Tournament", out.toByteArray());
                 });
 
                 ItemStack bo3 = new SkullBuilder("21e4ea59b54cc99416bc9f624548ddac2a38eea6a2dbf6e4ccd83cec7ac969")
@@ -130,6 +138,11 @@ public class CreateCMD extends AbstractCommand {
                     plugin.eventManager().bestOf(BestOf.THREE);
                     plugin.eventManager().eventStatus(EventStatus.WAITING);
                     p.closeInventory();
+
+                    // Update bungeecord
+                    ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                    out.writeUTF("host-" + p.getName() + "-" + plugin.eventManager().kit().getName());
+                    Iterables.getFirst(Bukkit.getOnlinePlayers(), null).sendPluginMessage(plugin, "Tournament", out.toByteArray());
                 });
 
                 ItemStack bo5 = new SkullBuilder("84c8c3710da2559a291adc39629e9ccea31ca9d3d3586bfea6e6e06124b3c")
@@ -139,14 +152,26 @@ public class CreateCMD extends AbstractCommand {
                     plugin.eventManager().bestOf(BestOf.FIVE);
                     plugin.eventManager().eventStatus(EventStatus.WAITING);
                     p.closeInventory();
+
+                    // Update bungeecord
+                    ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                    out.writeUTF("host-" + p.getName() + "-" + plugin.eventManager().kit().getName());
+                    Iterables.getFirst(Bukkit.getOnlinePlayers(), null).sendPluginMessage(plugin, "Tournament", out.toByteArray());
                 });
 
                 ItemStack bo7 = new SkullBuilder("24bde79f84fc5f3f1fbc5bc01071066bd20cd263a1654d64d60d84248ba9cd")
                         .setDisplayName("&a&lBest of 7")
                         .addLore("").addLore("&aClick to Select!").build();
                 setItem(25, bo7, (p,a) -> {
+
                     plugin.eventManager().bestOf(BestOf.SEVEN);
                     plugin.eventManager().eventStatus(EventStatus.WAITING);
+
+                    // Update bungeecord
+                    ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                    out.writeUTF("host-" + p.getName() + "-" + plugin.eventManager().kit().getName());
+                    Iterables.getFirst(Bukkit.getOnlinePlayers(), null).sendPluginMessage(plugin, "Tournament", out.toByteArray());
+
                     p.closeInventory();
                 });
             }
