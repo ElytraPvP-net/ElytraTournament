@@ -115,6 +115,9 @@ public class Event {
             new BukkitRunnable() {
                 @Override
                 public void run() {
+                    // Add 1 to tournaments played counter.
+                    plugin.customPlayerManager().getPlayers().forEach(CustomPlayer::addTournamentPlayed);
+
                     startEvent();
                 }
             }.runTask(plugin);

@@ -3,9 +3,7 @@ package net.elytrapvp.elytratournament.players;
 import net.elytrapvp.elytratournament.ElytraTournament;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Manages all CustomPlayer objects.
@@ -38,6 +36,14 @@ public class CustomPlayerManager {
         }
 
         return null;
+    }
+
+    /**
+     * Get the custom players on all online players.
+     * @return all online custom players.
+     */
+    public Collection<CustomPlayer> getPlayers() {
+        return players.values();
     }
 
     /**
