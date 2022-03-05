@@ -15,6 +15,9 @@ import at.stefangeyer.challonge.rest.RestClient;
 import at.stefangeyer.challonge.rest.retrofit.RetrofitRestClient;
 import at.stefangeyer.challonge.serializer.Serializer;
 import at.stefangeyer.challonge.serializer.gson.GsonSerializer;
+import com.google.common.collect.Iterables;
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import net.elytrapvp.elytratournament.ElytraTournament;
 import net.elytrapvp.elytratournament.event.game.Game;
 import net.elytrapvp.elytratournament.players.CustomPlayer;
@@ -60,6 +63,11 @@ public class Event {
         Serializer serializer = new GsonSerializer();
         RestClient restClient = new RetrofitRestClient();
         challonge = new Challonge(credentials, serializer, restClient);
+
+        // Update bungeecord again, just in case.
+        ByteArrayDataOutput out = ByteStreams.newDataOutput();
+        out.writeUTF("cancel");
+        Iterables.getFirst(Bukkit.getOnlinePlayers(), null).sendPluginMessage(plugin, "Tournament", out.toByteArray());
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             // Create the tournament

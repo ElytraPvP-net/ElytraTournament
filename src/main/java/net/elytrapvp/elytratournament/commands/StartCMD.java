@@ -48,13 +48,13 @@ public class StartCMD extends AbstractCommand {
             return;
         }
 
-        Bukkit.setWhitelist(true);
-        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aGenerating Brackets"));
-
         // Update bungeecord
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("cancel");
         Iterables.getFirst(Bukkit.getOnlinePlayers(), null).sendPluginMessage(plugin, "Tournament", out.toByteArray());
+
+        Bukkit.setWhitelist(true);
+        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aGenerating Brackets"));
 
         plugin.eventManager().create();
     }
