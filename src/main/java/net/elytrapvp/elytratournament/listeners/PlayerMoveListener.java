@@ -48,15 +48,15 @@ public class PlayerMoveListener implements Listener {
         }
 
         if(player.getLocation().getY() < plugin.eventManager().kit().getVoidLevel()) {
-            if(game.getGameState() == GameState.COUNTDOWN) {
+            if(game.getGameState() != GameState.RUNNING) {
                 player.teleport(game.getArena().getSpawns().get(0));
                 return;
             }
 
             game.playerKilled(player);
-            player.teleport(game.getArena().getSpawns().get(0));
-            player.setAllowFlight(true);
-            player.setFlying(true);
+            //player.teleport(game.getArena().getSpawns().get(0));
+            //player.setAllowFlight(true);
+            //player.setFlying(true);
         }
     }
 }
