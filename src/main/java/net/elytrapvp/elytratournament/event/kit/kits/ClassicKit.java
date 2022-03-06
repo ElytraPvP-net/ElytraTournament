@@ -13,6 +13,7 @@ public class ClassicKit extends Kit {
         super(plugin, "Classic");
         setIconMaterial(Material.FISHING_ROD);
         setKnockback("rod");
+        setRodMultiplier(1.5);
 
         ItemStack helmet = new ItemBuilder(Material.IRON_HELMET)
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2)
