@@ -22,7 +22,7 @@ public class HealingRunnable extends BukkitRunnable {
             }
 
             //
-            if(plugin.eventManager().kit() == null && !plugin.eventManager().kit().naturalRegen()) {
+            if(plugin.eventManager().kit() == null || !plugin.eventManager().kit().naturalRegen()) {
                 continue;
             }
 
