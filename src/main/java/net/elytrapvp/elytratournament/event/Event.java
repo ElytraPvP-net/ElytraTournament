@@ -170,10 +170,19 @@ public class Event {
         Bukkit.setWhitelist(false);
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, ()-> {
-            try {
-                challonge.startTournament(tournament);
-            } catch (DataAccessException e) {
-                e.printStackTrace();
+            boolean sent2 = false;
+            while(!sent2) {
+                try {
+                    challonge.startTournament(tournament);
+                    sent2 = true;
+                } catch (DataAccessException e) {
+                    e.printStackTrace();
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
 
             for(Player player : Bukkit.getOnlinePlayers()) {
