@@ -20,6 +20,11 @@ public enum GameState {
     RUNNING,
 
     /**
+     * Game is between rounds in a best of game.
+     */
+    ROUND_OVER,
+
+    /**
      * Game has ended.
      */
     END

@@ -138,17 +138,12 @@ public class Game {
         int spawn = 0;
     }
 
-    /**
-     * Runs at the end of a round.
-     */
-    public void end(Player winner, Player loser) {
-        if(gameState == GameState.END) {
+    public void roundEnd(Player winner, Player loser) {
+        if(gameState == GameState.ROUND_OVER) {
             return;
         }
-
-        gameState = GameState.END;
+        gameState = GameState.ROUND_OVER;
         timer.stop();
-
         addScore(winner);
 
         broadcast("&8&m+-----------------------***-----------------------+");
@@ -164,12 +159,25 @@ public class Game {
         }
         broadcast("&8&m+-----------------------***-----------------------+");
 
-        // Start again if more score is needed.
-        if(getScore(winner) < plugin.eventManager().bestOf().getNeededWins()) {
-            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, this::start, 100);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            if(getScore(winner) >= plugin.eventManager().bestOf().getNeededWins()) {
+                end(winner, loser);
+            }
+            else {
+                start();
+            }
+        }, 100);
+    }
+
+    /**
+     * Runs at the end of a round.
+     */
+    public void end(Player winner, Player loser) {
+        if(gameState == GameState.END) {
             return;
         }
 
+        gameState = GameState.END;
 
         Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &f" + winner.getName() + " &ahas defeated &f" + loser.getName() + " &7(&f" + getScore(winner) + " &7-&f " + getScore(loser) + "&7)&a."));
 
@@ -240,9 +248,109 @@ public class Game {
                     Bukkit.getScheduler().runTaskLater(plugin, () -> location.getChunk().unload(), 100);
                 }
             }
-
-            //plugin.eventManager().activeEvent().nextRound();
         }, 120);
+
+        /*
+        if(gameState == GameState.END) {
+            return;
+        }
+
+        gameState = GameState.END;
+        timer.stop();
+
+        addScore(winner);
+
+        broadcast("&8&m+-----------------------***-----------------------+");
+        broadcast(" ");
+        broadcastCenter("&a&l" + plugin.eventManager().kit().getName() + " Duel &7- &f&l" + timer.toString());
+        broadcast(" ");
+        broadcastCenter("&aWinner:");
+        broadcastCenter(winner.getName() + " &a(" + ChatUtils.getFormattedHealthPercent(winner) + "&a)");
+        broadcast(" ");
+        for(Player player : getPlayers()) {
+            ChatUtils.centeredChat(player, "&aScore");
+            ChatUtils.centeredChat(player, "&f" + getScore(player) + " &7-&f " + getScore(getOpponent(player)));
+        }
+        broadcast("&8&m+-----------------------***-----------------------+");
+
+        // Start again if more score is needed.
+        if(getScore(winner) < plugin.eventManager().bestOf().getNeededWins()) {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, this::start, 100);
+            return;
+        }
+
+        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &f" + winner.getName() + " &ahas defeated &f" + loser.getName() + " &7(&f" + getScore(winner) + " &7-&f " + getScore(loser) + "&7)&a."));
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            for(Player player : getPlayers()) {
+                player.getInventory().clear();
+                player.getInventory().setArmorContents(null);
+                player.setAllowFlight(false);
+                player.setFlying(false);
+                player.setMaxHealth(20.0);
+                player.setHealth(20.0);
+                player.setFoodLevel(20);
+                player.teleport(arena.getSpectateSpawn());
+                player.spigot().setCollidesWithEntities(true);
+                ((CraftPlayer) player).getHandle().getDataWatcher().watch(9, (byte) 0);
+
+                ItemUtils.giveSpectateItems(player);
+                new EventScoreboard(plugin, player);
+
+                for(PotionEffect effect : player.getActivePotionEffects()) {
+                    player.removePotionEffect(effect.getType());
+                }
+            }
+            plugin.arenaManager().addArena(arena);
+
+            plugin.gameManager().destroyGame(this);
+
+            Bukkit.getScheduler().runTaskAsynchronously(plugin, ()-> {
+                Event event = plugin.eventManager().activeEvent();
+                Player player1 = event.getPlayer(match.getPlayer1Id());
+
+                MatchQuery.MatchQueryBuilder builder;
+
+                if(winner.equals(player1)) {
+                    builder = MatchQuery.builder()
+                            .winnerId(event.getPlayerID(winner))
+                            .scoresCsv(getScore(winner) + "-" + getScore(loser));
+                }
+                else {
+                    builder = MatchQuery.builder()
+                            .winnerId(event.getPlayerID(winner))
+                            .scoresCsv(getScore(loser) + "-" + getScore(winner));
+                }
+
+                Challonge challonge = plugin.eventManager().activeEvent().getChallonge();
+
+                boolean sent = false;
+                while(!sent) {
+                    try {
+                        challonge.updateMatch(match, builder.build());
+                        sent = true;
+                        Thread.sleep(1000);
+                    }
+                    catch (DataAccessException | InterruptedException exception) {
+                        exception.printStackTrace();
+                    }
+
+                }
+            });
+        }, 100);
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            for(Location location : blocks.keySet()) {
+                location.getWorld().getBlockAt(location).setType(blocks.get(location));
+
+                if(!location.getChunk().isLoaded()) {
+                    location.getChunk().load();
+                    Bukkit.getScheduler().runTaskLater(plugin, () -> location.getChunk().unload(), 100);
+                }
+            }
+        }, 120);
+
+         */
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -374,8 +482,8 @@ public class Game {
         broadcast("&a" + player.getName() + " disconnected.");
         player.getLocation().getWorld().strikeLightning(player.getLocation());
 
-        setScore(getOpponent(player), plugin.eventManager().bestOf().getNeededWins() - 1);
-        end(getOpponent(player), player);
+        setScore(getOpponent(player), plugin.eventManager().bestOf().getNeededWins());
+        roundEnd(getOpponent(player), player);
     }
 
     /**
@@ -401,11 +509,11 @@ public class Game {
         player.setFireTicks(0);
 
         // Prevents stuff from breaking if the game is already over.
-        if(gameState == GameState.END) {
+        if(gameState == GameState.END || gameState == GameState.ROUND_OVER) {
             return;
         }
 
-        end(getOpponent(player), player);
+        roundEnd(getOpponent(player), player);
     }
 
     /**
