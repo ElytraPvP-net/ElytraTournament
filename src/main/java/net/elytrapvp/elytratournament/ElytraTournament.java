@@ -7,6 +7,7 @@ import net.elytrapvp.elytratournament.event.game.GameManager;
 import net.elytrapvp.elytratournament.event.kit.KitManager;
 import net.elytrapvp.elytratournament.listeners.*;
 import net.elytrapvp.elytratournament.players.CustomPlayerManager;
+import net.elytrapvp.elytratournament.runnables.HealingRunnable;
 import net.elytrapvp.elytratournament.utils.gui.GUIListeners;
 import net.elytrapvp.elytratournament.utils.scoreboard.ScoreboardUpdate;
 import org.bukkit.Bukkit;
@@ -73,6 +74,9 @@ public final class ElytraTournament extends JavaPlugin {
 
         // Enable BungeeCord messaging.
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "Tournament");
+
+        // Change pace of healing.
+        new HealingRunnable(this).runTaskTimer(this, 20*8, 20*8);
     }
 
     @Override
