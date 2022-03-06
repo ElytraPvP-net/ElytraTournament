@@ -783,7 +783,7 @@ Maps:
           World: world
           X: 1058.5
           Y: 76.5
-          Z: -379.5
+          Z: -362.5
           Pitch: 0
           Yaw: 0
       '3':
@@ -792,7 +792,7 @@ Maps:
             World: world
             X: 1056.5
             Y: 69.5
-            Z: -354.5
+            Z: -379.5
             Pitch: 0
             Yaw: 180
           '2':
