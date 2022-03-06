@@ -100,7 +100,7 @@ public class Game {
             public void run() {
                 counter--;
 
-                if(gameState == GameState.END) {
+                if(gameState == GameState.END || gameState == GameState.ROUND_OVER) {
                     cancel();
                 }
 

@@ -12,6 +12,7 @@ public class Timer {
     private int seconds;
     private int minutes;
     private final BukkitRunnable task;
+    private boolean running = false;
 
     /**
      * Create a timer.
@@ -47,13 +48,19 @@ public class Timer {
      */
     public void start() {
         task.runTaskTimer(plugin, 0, 20);
+        running = true;
     }
 
     /**
      * Stop the timer.
      */
     public void stop() {
+        if(!running) {
+            return;
+        }
+
         task.cancel();
+        running = false;
     }
 
     /**
