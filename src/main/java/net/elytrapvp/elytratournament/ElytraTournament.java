@@ -66,6 +66,7 @@ public final class ElytraTournament extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerItemConsumeListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         Bukkit.getPluginManager().registerEvents(new ProjectileHitListener(this), this);
         Bukkit.getPluginManager().registerEvents(new ProjectileLaunchListener(this), this);

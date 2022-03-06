@@ -436,3 +436,399 @@ Maps:
           Z: 127.5
           Pitch: 0
           Yaw: 180
+  Triple:
+    name: Triple
+    builders:
+      - RMicky
+    kits:
+      - Cactus
+    arenas:
+      '1':
+        spawns:
+          '1':
+            World: world
+            X: 1185.5
+            Y: 69.5
+            Z: -395.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1185.5
+            Y: 69.5
+            Z: -381.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1183.5
+          Y: 76.5
+          Z: -372.5
+          Pitch: 0
+          Yaw: 180
+      '2':
+        spawns:
+          '1':
+            World: world
+            X: 1185.5
+            Y: 69.5
+            Z: -352.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1185.5
+            Y: 69.5
+            Z: -338.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1183.5
+          Y: 76.5
+          Z: -361.5
+          Pitch: 0
+          Yaw: 180
+      '3':
+        spawns:
+          '1':
+            World: world
+            X: 1142.5
+            Y: 69.5
+            Z: -395.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1142.5
+            Y: 69.5
+            Z: -381.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1144.5
+          Y: 76.5
+          Z: -372.5
+          Pitch: 0
+          Yaw: 180
+      '4':
+        spawns:
+          '1':
+            World: world
+            X: 1142.5
+            Y: 69.5
+            Z: -352.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1142.5
+            Y: 69.5
+            Z: -338.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1144.5
+          Y: 76.5
+          Z: -329.5
+          Pitch: 0
+          Yaw: 180
+  Cross:
+    name: Cross
+    builders:
+      - RMicky
+    kits:
+      - Cactus
+    arenas:
+      '1':
+        spawns:
+          '1':
+            World: world
+            X: 1185.5
+            Y: 69.5
+            Z: -208.5
+            Pitch: 0
+            Yaw: 180
+          '2':
+            World: world
+            X: 1185.5
+            Y: 69.5
+            Z: -224.5
+            Pitch: 0
+            Yaw: 0
+        spectate:
+          World: world
+          X: 1183.5
+          Y: 76.5
+          Z: -232.5
+          Pitch: 0
+          Yaw: 0
+      '2':
+        spawns:
+          '1':
+            World: world
+            X: 1185.5
+            Y: 69.5
+            Z: -251.5
+            Pitch: 0
+            Yaw: 180
+          '2':
+            World: world
+            X: 1185.5
+            Y: 69.5
+            Z: -267.5
+            Pitch: 0
+            Yaw: 0
+        spectate:
+          World: world
+          X: 1183.5
+          Y: 76.5
+          Z: -243.5
+          Pitch: 0
+          Yaw: 180
+      '3':
+        spawns:
+          '1':
+            World: world
+            X: 1142.5
+            Y: 69.5
+            Z: -208.5
+            Pitch: 0
+            Yaw: 180
+          '2':
+            World: world
+            X: 1142.5
+            Y: 69.5
+            Z: -224.5
+            Pitch: 0
+            Yaw: 0
+        spectate:
+          World: world
+          X: 1144.5
+          Y: 76.5
+          Z: -232.5
+          Pitch: 0
+          Yaw: 0
+      '4':
+        spawns:
+          '1':
+            World: world
+            X: 1142.5
+            Y: 69.5
+            Z: -252.5
+            Pitch: 0
+            Yaw: 180
+          '2':
+            World: world
+            X: 1142.5
+            Y: 69.5
+            Z: -267.5
+            Pitch: 0
+            Yaw: 0
+        spectate:
+          World: world
+          X: 1144.5
+          Y: 76.5
+          Z: -243.5
+          Pitch: 0
+          Yaw: 180
+  Oval:
+    name: Oval
+    builders:
+      - RMicky
+    kits:
+      - Cactus
+    arenas:
+      '1':
+        spawns:
+          '1':
+            World: world
+            X: 1056.5
+            Y: 69.5
+            Z: -208.5
+            Pitch: 0
+            Yaw: 180
+          '2':
+            World: world
+            X: 1056.5
+            Y: 69.5
+            Z: -224.5
+            Pitch: 0
+            Yaw: 0
+        spectate:
+          World: world
+          X: 1183.5
+          Y: 76.5
+          Z: -231.5
+          Pitch: 0
+          Yaw: 0
+      '2':
+        spawns:
+          '1':
+            World: world
+            X: 1013.5
+            Y: 69.5
+            Z: -224.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1013.5
+            Y: 69.5
+            Z: -208.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1015.5
+          Y: 76.5
+          Z: -231.5
+          Pitch: 0
+          Yaw: 0
+      '3':
+        spawns:
+          '1':
+            World: world
+            X: 1013.5
+            Y: 69.5
+            Z: -267.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1013.5
+            Y: 69.5
+            Z: -251.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1015.5
+          Y: 76.5
+          Z: -274.5
+          Pitch: 0
+          Yaw: 0
+      '4':
+        spawns:
+          '1':
+            World: world
+            X: 1056.5
+            Y: 69.5
+            Z: -208.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1056.5
+            Y: 69.5
+            Z: -224.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1183.5
+          Y: 76.5
+          Z: -231.5
+          Pitch: 0
+          Yaw: 0
+  Figure8:
+    name: Figure 8
+    builders:
+      - RMicky
+    kits:
+      - Cactus
+    arenas:
+      '1':
+        spawns:
+          '1':
+            World: world
+            X: 1013.5
+            Y: 69.5
+            Z: -354.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1013.5
+            Y: 69.5
+            Z: -336.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1015.5
+          Y: 76.5
+          Z: -360.5
+          Pitch: 0
+          Yaw: 0
+      '2':
+        spawns:
+          '1':
+            World: world
+            X: 1056.5
+            Y: 69.5
+            Z: -354.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1056.5
+            Y: 69.5
+            Z: -336.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1058.5
+          Y: 76.5
+          Z: -379.5
+          Pitch: 0
+          Yaw: 0
+      '3':
+        spawns:
+          '1':
+            World: world
+            X: 1056.5
+            Y: 69.5
+            Z: -354.5
+            Pitch: 0
+            Yaw: 180
+          '2':
+            World: world
+            X: 1056.5
+            Y: 69.5
+            Z: -397.5
+            Pitch: 0
+            Yaw: 0
+        spectate:
+          World: world
+          X: 1058.5
+          Y: 76.5
+          Z: -403.5
+          Pitch: 0
+          Yaw: 0
+      '4':
+        spawns:
+          '1':
+            World: world
+            X: 1013.5
+            Y: 69.5
+            Z: -379.5
+            Pitch: 0
+            Yaw: 0
+          '2':
+            World: world
+            X: 1013.5
+            Y: 69.5
+            Z: -397.5
+            Pitch: 0
+            Yaw: 180
+        spectate:
+          World: world
+          X: 1015.5
+          Y: 76.5
+          Z: -403.5
+          Pitch: 0
+          Yaw: 0
