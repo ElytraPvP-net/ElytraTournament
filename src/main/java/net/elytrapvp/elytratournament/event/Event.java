@@ -289,7 +289,23 @@ public class Event {
 
                         Map<Participant, Integer> results = new HashMap<>();
 
-                        for(Participant participant : challonge.getParticipants(tournament)) {
+                        List<Participant> participants = new ArrayList<>();
+                        boolean sent = false;
+                        while(!sent) {
+                            try {
+                                participants.addAll(challonge.getParticipants(tournament));
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                            catch (DataAccessException exception) {
+                                exception.printStackTrace();
+                            }
+                        }
+
+                        for(Participant participant : participants) {
                             results.put(participant, participant.getFinalRank());
                         }
 
