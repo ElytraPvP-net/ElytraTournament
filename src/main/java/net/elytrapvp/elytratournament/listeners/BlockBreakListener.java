@@ -51,5 +51,9 @@ public class BlockBreakListener implements Listener {
         // Get the drops from the block and add them to the inventory.
         Collection<ItemStack> drops = event.getBlock().getDrops();
         drops.forEach(drop -> player.getInventory().addItem(drop));
+
+        // Set the block to air to prevent item drops.
+        event.setCancelled(true);
+        event.getBlock().setType(Material.AIR);
     }
 }
