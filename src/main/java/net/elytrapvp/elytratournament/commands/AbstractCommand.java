@@ -36,6 +36,7 @@ public abstract class AbstractCommand implements CommandExecutor {
         new BracketCMD(pl);
         new CancelCMD(pl);
         new CreateCMD(pl);
+        new PingCMD();
         new StartCMD(pl);
     }
 
