@@ -5,6 +5,8 @@ import net.elytrapvp.elytratournament.event.kit.Kit;
 import net.elytrapvp.elytratournament.utils.item.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class SoupKit extends Kit {
     public SoupKit(ElytraTournament plugin) {
@@ -12,6 +14,8 @@ public class SoupKit extends Kit {
         setIconMaterial(Material.MUSHROOM_SOUP);
         setStartingHunger(19);
         setNaturalRegen(false);
+
+        addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 200000, 0, true));
 
         ItemStack helmet = new ItemBuilder(Material.IRON_HELMET)
                 .setUnbreakable(true)
