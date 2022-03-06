@@ -294,14 +294,16 @@ public class Event {
                         while(!sent) {
                             try {
                                 participants.addAll(challonge.getParticipants(tournament));
+                                sent = true;
+                            }
+                            catch (DataAccessException exception) {
+                                exception.printStackTrace();
+
                                 try {
                                     Thread.sleep(100);
                                 } catch (InterruptedException ex) {
                                     ex.printStackTrace();
                                 }
-                            }
-                            catch (DataAccessException exception) {
-                                exception.printStackTrace();
                             }
                         }
 
