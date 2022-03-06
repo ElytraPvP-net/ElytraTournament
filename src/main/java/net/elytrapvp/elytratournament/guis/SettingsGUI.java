@@ -35,7 +35,7 @@ public class SettingsGUI extends CustomGUI {
         else {
             scoreboard.addLore("&cDisabled");
         }
-        setItem(20, scoreboard.build(), (p,a) -> {
+        setItem(22, scoreboard.build(), (p,a) -> {
             customPlayer.setShowScoreboard(!customPlayer.getShowScoreboard());
             new SettingsGUI(plugin, player).open(player);
 
