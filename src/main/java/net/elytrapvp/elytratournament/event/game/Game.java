@@ -183,6 +183,11 @@ public class Game {
         }
         broadcast("&8&m+-----------------------***-----------------------+");
 
+        for(Player player : getPlayers()) {
+            player.setAllowFlight(false);
+            player.setFlying(false);
+        }
+
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             if(getScore(winner) >= plugin.eventManager().bestOf().getNeededWins()) {
                 end(winner, loser);
