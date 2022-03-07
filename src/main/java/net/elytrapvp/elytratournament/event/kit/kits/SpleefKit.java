@@ -9,6 +9,8 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
@@ -19,7 +21,7 @@ public class SpleefKit extends Kit {
 
         setIconMaterial(Material.SNOW_BALL);
         setGameMode(GameMode.SURVIVAL);
-        setTakeDamage(false);
+        addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200000, 100, true));
         setVoidLevel(50);
 
         ItemStack shovel = new ItemBuilder(Material.DIAMOND_SPADE)
