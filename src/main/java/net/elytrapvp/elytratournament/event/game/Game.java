@@ -74,6 +74,10 @@ public class Game {
             plugin.eventManager().kit().apply(player);
             new GameScoreboard(plugin, player, this);
             spawn++;
+
+            doubleJump.put(player, kit.getDoubleJumps());
+            repulsor.put(player, kit.getRepulsors());
+            tripleShot.put(player, kit.getTripleShots());
         }
 
         broadcast("&8&m+-----------------------***-----------------------+");
