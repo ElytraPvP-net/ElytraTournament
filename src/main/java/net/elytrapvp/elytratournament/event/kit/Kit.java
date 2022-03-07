@@ -50,6 +50,7 @@ public class Kit {
     private boolean takeDamage = true;
     private boolean waterKills = false;
     private String knockback = "default";
+    private boolean spawnOnStart = false;
 
     // Abilities
     private int doubleJumps = 0;
@@ -517,5 +518,21 @@ public class Kit {
      */
     public boolean waterKills() {
         return waterKills;
+    }
+
+    /**
+     * Get if players should teleport to spawn on start.
+     * @return If they should go to spawn on start.
+     */
+    public boolean spawnOnStart() {
+        return spawnOnStart;
+    }
+
+    /**
+     * Set if the players should teleport to their spawn on start.
+     * @param spawnOnStart If they should teleport to spawn.
+     */
+    public void spawnOnStart(boolean spawnOnStart) {
+        this.spawnOnStart = spawnOnStart;
     }
 }

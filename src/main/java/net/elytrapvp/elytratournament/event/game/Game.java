@@ -142,6 +142,20 @@ public class Game {
         if(kit.getDoubleJumps() > 0) {
             getPlayers().forEach(player -> player.setAllowFlight(true));
         }
+
+        if(kit.spawnOnStart()) {
+            int spawn = 0;
+            for(Player player : getPlayers()) {
+                if (spawn >= arena.getSpawns().size()) {
+                    spawn = 0;
+                }
+
+                player.teleport(arena.getSpawns().get(spawn));
+                plugin.eventManager().kit().apply(player);
+                new GameScoreboard(plugin, player, this);
+                spawn++;
+            }
+        }
     }
 
     public void roundEnd(Player winner, Player loser) {
