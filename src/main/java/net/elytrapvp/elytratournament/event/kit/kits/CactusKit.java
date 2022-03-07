@@ -21,6 +21,7 @@ public class CactusKit extends Kit {
 
         setNaturalRegen(false);
         setVoidLevel(50);
+        spawnOnStart(true);
 
         ItemStack cactus = new ItemBuilder(Material.CACTUS, 16).build();
         ItemStack egg = new ItemStack(Material.EGG);
