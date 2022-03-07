@@ -39,12 +39,14 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
+        plugin.eventManager().kit().onBlockBreak(game, event);
+
         if(!game.getBlocks().contains(event.getBlock().getLocation())) {
             event.setCancelled(true);
             return;
         }
 
-        if(event.getBlock().getType() == Material.LEAVES || event.getBlock().getType() == Material.WOOL) {
+        if(event.getBlock().getType() == Material.LEAVES || event.getBlock().getType() == Material.WOOL || event.getBlock().getType() == Material.SNOW_BLOCK) {
             return;
         }
 

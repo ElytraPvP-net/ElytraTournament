@@ -9,6 +9,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -343,6 +344,13 @@ public class Kit {
     public boolean naturalRegen() {
         return naturalRegen;
     }
+
+    /**
+     * Called when a block is broken in game.
+     * @param game Current Game
+     * @param event BlockBreakEvent
+     */
+    public void onBlockBreak(Game game, BlockBreakEvent event) {}
 
     /**
      * Called when a block is placed in game.

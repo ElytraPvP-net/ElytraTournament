@@ -25,6 +25,7 @@ public class KitManager {
         kits.add(new OPKit(plugin));
         kits.add(new SpeedArcherKit(plugin));
         kits.add(new SoupKit(plugin));
+        kits.add(new SpleefKit(plugin));
         kits.add(new SumoKit(plugin));
     }
 
