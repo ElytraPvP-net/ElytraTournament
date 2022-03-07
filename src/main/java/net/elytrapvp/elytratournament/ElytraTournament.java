@@ -56,6 +56,7 @@ public final class ElytraTournament extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BlockBreakListener(this), this);
         Bukkit.getPluginManager().registerEvents(new BlockIgniteListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlockPlaceListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new EntityExplodeListener(this), this);
         Bukkit.getPluginManager().registerEvents(new EntityRegainHealthListener(this), this);
         Bukkit.getPluginManager().registerEvents(new EntityShootBowListener(), this);
         Bukkit.getPluginManager().registerEvents(new GUIListeners(), this);
@@ -69,6 +70,8 @@ public final class ElytraTournament extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerToggleFlightListener(this),this);
+        Bukkit.getPluginManager().registerEvents(new PlayerToggleSneakListener(this), this);
         Bukkit.getPluginManager().registerEvents(new ProjectileHitListener(this), this);
         Bukkit.getPluginManager().registerEvents(new ProjectileLaunchListener(this), this);
 

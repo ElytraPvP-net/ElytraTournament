@@ -37,6 +37,10 @@ public class Game {
     private Player player1;
     private Player player2;
 
+    private final HashMap<Player, Integer> tripleShot = new HashMap<>();
+    private final HashMap<Player, Integer> repulsor = new HashMap<>();
+    private final HashMap<Player, Integer> doubleJump = new HashMap<>();
+
     public Game(ElytraTournament plugin, Arena arena, Match match) {
         this.plugin = plugin;
         this.arena = arena;
@@ -134,6 +138,10 @@ public class Game {
 
         gameState = GameState.RUNNING;
         timer.start();
+
+        if(kit.getDoubleJumps() > 0) {
+            getPlayers().forEach(player -> player.setAllowFlight(true));
+        }
     }
 
     public void roundEnd(Player winner, Player loser) {
@@ -272,6 +280,14 @@ public class Game {
 
         scores.put(player1, 0);
         scores.put(player2, 0);
+
+        doubleJump.put(player1, kit.getDoubleJumps());
+        repulsor.put(player1, kit.getRepulsors());
+        tripleShot.put(player1, kit.getTripleShots());
+
+        doubleJump.put(player2, kit.getDoubleJumps());
+        repulsor.put(player2, kit.getRepulsors());
+        tripleShot.put(player2, kit.getTripleShots());
     }
 
     /**
@@ -319,6 +335,15 @@ public class Game {
     }
 
     /**
+     * Get the amount of double jumps a player has left.
+     * @param player Player to get double jumps of.
+     * @return Amount of double jumps left.
+     */
+    public int getDoubleJumps(Player player) {
+        return doubleJump.get(player);
+    }
+
+    /**
      * Get the state of the game.
      * @return Current game state.
      */
@@ -338,6 +363,15 @@ public class Game {
     }
 
     /**
+     * Get the amount of repulsors a player has left.
+     * @param player Player to get repulsors of.
+     * @return Amount of repulsors left.
+     */
+    public int getRepulsors(Player player) {
+        return repulsor.get(player);
+    }
+
+    /**
      * Get a player's score.
      * @param player Player to get score of.
      * @return The score.
@@ -352,6 +386,15 @@ public class Game {
      */
     public Timer getTimer() {
         return timer;
+    }
+
+    /**
+     * Get the amount of triple shots a player has left.
+     * @param player Player to get triple shots of.
+     * @return Amount of triple shots left.
+     */
+    public int getTripleShots(Player player) {
+        return tripleShot.get(player);
     }
 
     /**
@@ -410,6 +453,30 @@ public class Game {
         }
 
         roundEnd(getOpponent(player), player);
+    }
+
+    /**
+     * Remove a double jump from a player.
+     * @param player Player to double jump from.
+     */
+    public void removeDoubleJump(Player player) {
+        doubleJump.put(player, getDoubleJumps(player) - 1);
+    }
+
+    /**
+     * Remove a repulsor from a player.
+     * @param player Player to remove repulsor of.
+     */
+    public void removeRepulsor(Player player) {
+        repulsor.put(player, getRepulsors(player) - 1);
+    }
+
+    /**
+     * Remove a triple shot from a player.
+     * @param player Player to remove triple shot from.
+     */
+    public void removeTripleShot(Player player) {
+        tripleShot.put(player, getTripleShots(player) - 1);
     }
 
     /**

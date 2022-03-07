@@ -5,23 +5,26 @@ import net.elytrapvp.elytratournament.event.game.Game;
 import net.elytrapvp.elytratournament.event.game.GameState;
 import net.elytrapvp.elytratournament.guis.SettingsGUI;
 import net.elytrapvp.elytratournament.guis.SpectateGUI;
+import net.elytrapvp.elytratournament.utils.MathUtils;
 import net.elytrapvp.elytratournament.utils.chat.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class PlayerInteractListener implements Listener {
-    private ElytraTournament plugin;
+    private final ElytraTournament plugin;
     private final Set<Player> pearlCooldown = new HashSet<>();
 
 
@@ -54,6 +57,34 @@ public class PlayerInteractListener implements Listener {
             if(plugin.eventManager().kit().hasPearlCooldown()) {
                 pearlCooldown.add(player);
                 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> pearlCooldown.remove(player), 200);
+            }
+        }
+
+        if(game != null) {
+            if (game.getGameState() == GameState.RUNNING) {
+                if (plugin.eventManager().kit().getTripleShots() > 0) {
+                    if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
+                        if (event.getItem() != null) {
+                            if (event.getItem().getType() == Material.BOW) {
+                                if (game.getTripleShots(player) > 0) {
+                                    Arrow arrow = player.launchProjectile(Arrow.class);
+                                    arrow.setVelocity(player.getLocation().getDirection().multiply(1.9));
+                                    arrow.setFireTicks(100);
+
+                                    Arrow arrow2 = player.launchProjectile(Arrow.class);
+                                    arrow2.setVelocity(MathUtils.rotateVector(arrow.getVelocity().clone(), 0.21816616).multiply(1.1));
+                                    arrow2.setFireTicks(100);
+
+                                    Arrow arrow3 = player.launchProjectile(Arrow.class);
+                                    arrow3.setVelocity(MathUtils.rotateVector(arrow.getVelocity().clone(), -0.21816616).multiply(1.1));
+                                    arrow3.setFireTicks(100);
+
+                                    game.removeTripleShot(player);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -101,6 +132,46 @@ public class PlayerInteractListener implements Listener {
             case "Spectate" -> {
                 new SpectateGUI(plugin).open(player);
                 event.setCancelled(true);
+            }
+
+            case "Double Jump" -> {
+                if(game == null) {
+                    return;
+                }
+
+                if(game.getGameState() != GameState.RUNNING) {
+                    return;
+                }
+
+                // Exit if game does not have double jumps.
+                if(plugin.eventManager().kit().getDoubleJumps() == 0) {
+                    return;
+                }
+
+                // Prevents players from double jumping too often.
+                if(PlayerToggleFlightListener.getDelay().contains(player)) {
+                    return;
+                }
+
+                // Prevents players from "flying" when having no double jumps left.
+                if(game.getDoubleJumps(player) == 0) {
+                    event.setCancelled(true);
+                    player.setFlying(false);
+                    player.setAllowFlight(false);
+                    return;
+                }
+
+                PlayerToggleFlightListener.getDelay().add(player);
+                player.setAllowFlight(false);
+                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                    PlayerToggleFlightListener.getDelay().remove(player);
+                    player.setAllowFlight(true);
+                }, 15);
+                game.removeDoubleJump(player);
+                player.setFlying(false);
+
+                Vector vector = player.getLocation().getDirection().normalize().multiply(0.5).add(new Vector(0, 0.8, 0));
+                player.setVelocity(vector);
             }
         }
     }

@@ -832,3 +832,378 @@ Maps:
           Z: -403.5
           Pitch: 0
           Yaw: 0
+  Bow Spleef:
+    name: Bow Spleef
+    builders:
+      - RMicky
+    kits:
+      - Bow Spleef
+    arenas:
+      '1':
+        spawns:
+          '1':
+            World: world
+            X: 1471.5
+            Y: 66.5
+            Z: -35.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1451.5
+            Y: 69.5
+            Z: -35.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1477.5
+          Y: 72.5
+          Z: -35.5
+          Pitch: 0
+          Yaw: 90
+      '2':
+        spawns:
+          '1':
+            World: world
+            X: 1428.5
+            Y: 66.5
+            Z: -35.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1408.5
+            Y: 69.5
+            Z: -35.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1434.5
+          Y: 72.5
+          Z: -35.5
+          Pitch: 0
+          Yaw: 90
+      '3':
+        spawns:
+          '1':
+            World: world
+            X: 1342.5
+            Y: 66.5
+            Z: -35.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1322.5
+            Y: 69.5
+            Z: -35.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1348.5
+          Y: 72.5
+          Z: -35.5
+          Pitch: 0
+          Yaw: 90
+      '4':
+        spawns:
+          '1':
+            World: world
+            X: 1299.5
+            Y: 66.5
+            Z: -35.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1279.5
+            Y: 69.5
+            Z: -35.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1305.5
+          Y: 72.5
+          Z: -35.5
+          Pitch: 0
+          Yaw: 90
+      '5':
+        spawns:
+          '1':
+            World: world
+            X: 1471.5
+            Y: 66.5
+            Z: 8.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1451.5
+            Y: 69.5
+            Z: 8.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1477.5
+          Y: 72.5
+          Z: 8.5
+          Pitch: 0
+          Yaw: 90
+      '6':
+        spawns:
+          '1':
+            World: world
+            X: 1428.5
+            Y: 66.5
+            Z: 8.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1408.5
+            Y: 69.5
+            Z: 8.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1434.5
+          Y: 72.5
+          Z: 8.5
+          Pitch: 0
+          Yaw: 90
+      '7':
+        spawns:
+          '1':
+            World: world
+            X: 1342.5
+            Y: 66.5
+            Z: 8.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1322.5
+            Y: 69.5
+            Z: 8.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1348.5
+          Y: 72.5
+          Z: 8.5
+          Pitch: 0
+          Yaw: 90
+      '8':
+        spawns:
+          '1':
+            World: world
+            X: 1299.5
+            Y: 66.5
+            Z: 8.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1279.5
+            Y: 69.5
+            Z: 8.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1305.5
+          Y: 72.5
+          Z: 8.5
+          Pitch: 0
+          Yaw: 90
+      '9':
+        spawns:
+          '1':
+            World: world
+            X: 1471.5
+            Y: 66.5
+            Z: 94.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1451.5
+            Y: 69.5
+            Z: 94.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1477.5
+          Y: 72.5
+          Z: 94.5
+          Pitch: 0
+          Yaw: 90
+      '10':
+        spawns:
+          '1':
+            World: world
+            X: 1428.5
+            Y: 66.5
+            Z: 94.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1408.5
+            Y: 69.5
+            Z: 94.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1434.5
+          Y: 72.5
+          Z: 94.5
+          Pitch: 0
+          Yaw: 90
+      '11':
+        spawns:
+          '1':
+            World: world
+            X: 1342.5
+            Y: 66.5
+            Z: 94.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1322.5
+            Y: 69.5
+            Z: 94.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1348.5
+          Y: 72.5
+          Z: 94.5
+          Pitch: 0
+          Yaw: 90
+      '12':
+        spawns:
+          '1':
+            World: world
+            X: 1299.5
+            Y: 66.5
+            Z: 94.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1279.5
+            Y: 69.5
+            Z: 94.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1305.5
+          Y: 72.5
+          Z: 94.5
+          Pitch: 0
+          Yaw: 90
+      '13':
+        spawns:
+          '1':
+            World: world
+            X: 1471.5
+            Y: 66.5
+            Z: 137.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1451.5
+            Y: 69.5
+            Z: 137.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1477.5
+          Y: 72.5
+          Z: 137.5
+          Pitch: 0
+          Yaw: 90
+      '14':
+        spawns:
+          '1':
+            World: world
+            X: 1428.5
+            Y: 66.5
+            Z: 137.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1408.5
+            Y: 69.5
+            Z: 137.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1434.5
+          Y: 72.5
+          Z: 137.5
+          Pitch: 0
+          Yaw: 90
+      '15':
+        spawns:
+          '1':
+            World: world
+            X: 1342.5
+            Y: 66.5
+            Z: 137.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1322.5
+            Y: 69.5
+            Z: 137.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1348.5
+          Y: 72.5
+          Z: 137.5
+          Pitch: 0
+          Yaw: 90
+      '16':
+        spawns:
+          '1':
+            World: world
+            X: 1299.5
+            Y: 66.5
+            Z: 137.5
+            Pitch: 0
+            Yaw: 90
+          '2':
+            World: world
+            X: 1279.5
+            Y: 69.5
+            Z: 137.5
+            Pitch: 0
+            Yaw: -90
+        spectate:
+          World: world
+          X: 1305.5
+          Y: 72.5
+          Z: 137.5
+          Pitch: 0
+          Yaw: 90
