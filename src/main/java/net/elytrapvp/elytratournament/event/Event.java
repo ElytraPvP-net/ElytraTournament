@@ -370,7 +370,7 @@ public class Event {
                     ChatUtils.chat(plugin.eventManager().host(), "&c&lError &8» &cSomething went wrong starting the next round! Check console for details.");
                     exception.printStackTrace();
                 }
-            },0, 300);
+            },0, 200);
         });
     }
 
