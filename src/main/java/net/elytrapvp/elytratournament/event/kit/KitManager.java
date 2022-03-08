@@ -17,6 +17,7 @@ public class KitManager {
         kits.add(new BlitzKit(plugin));
         kits.add(new BowKit(plugin));
         kits.add(new BowSpleefKit(plugin));
+        kits.add(new BuildUHCKit(plugin));
         kits.add(new CactusKit(plugin));
         kits.add(new ClassicKit(plugin));
         kits.add(new DiamondKit(plugin));

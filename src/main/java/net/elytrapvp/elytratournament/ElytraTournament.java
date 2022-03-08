@@ -54,6 +54,7 @@ public final class ElytraTournament extends JavaPlugin {
 
         // Register event listeners.
         Bukkit.getPluginManager().registerEvents(new BlockBreakListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new BlockFromToListener(this), this);
         Bukkit.getPluginManager().registerEvents(new BlockIgniteListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlockPlaceListener(this), this);
         Bukkit.getPluginManager().registerEvents(new EntityExplodeListener(this), this);
@@ -63,6 +64,7 @@ public final class ElytraTournament extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EntityDamageByEntityListener(this), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageListener(this), this);
         Bukkit.getPluginManager().registerEvents(new FoodLevelChangeListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerBucketEmptyListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDropItemListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerEggThrowListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(this), this);

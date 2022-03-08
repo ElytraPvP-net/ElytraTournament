@@ -18,6 +18,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import java.util.HashSet;
@@ -172,6 +174,40 @@ public class PlayerInteractListener implements Listener {
 
                 Vector vector = player.getLocation().getDirection().normalize().multiply(0.5).add(new Vector(0, 0.8, 0));
                 player.setVelocity(vector);
+            }
+
+            case "Golden Head" -> {
+                if(pearlCooldown.contains(player)) {
+                    ChatUtils.chat(player, "&cThat item is currently on cooldown.");
+                    event.setCancelled(true);
+                    return;
+                }
+
+                pearlCooldown.add(player);
+                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> pearlCooldown.remove(player), 60);
+
+                if(event.getItem().getAmount() == 1) {
+                    player.getInventory().remove(event.getItem());
+                }
+                else {
+                    event.getItem().setAmount(event.getItem().getAmount() - 1);
+                }
+
+                // Fix absorption from not resetting.
+                player.removePotionEffect(PotionEffectType.ABSORPTION);
+
+                PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, 100, 0);
+                PotionEffect absorption = new PotionEffect(PotionEffectType.ABSORPTION, 2400, 0);
+                PotionEffect regen = new PotionEffect(PotionEffectType.REGENERATION, 100, 2);
+
+                player.addPotionEffect(speed);
+                player.addPotionEffect(absorption);
+                player.addPotionEffect(regen);
+
+                ChatUtils.chat(player, "&aYou ate a Golden Head!");
+                player.playSound(player.getLocation(), Sound.EAT, 1, 1);
+
+                event.setCancelled(true);
             }
         }
     }
