@@ -2348,6 +2348,7 @@ Maps:
       - RMicky
     kits:
       - Final UHC
+      - SG
     arenas:
       '1':
         spawns:
@@ -2447,6 +2448,7 @@ Maps:
       - RMicky
     kits:
       - Final UHC
+      - SG
     arenas:
       '1':
         spawns:
@@ -2546,6 +2548,7 @@ Maps:
       - RMicky
     kits:
       - Final UHC
+      - SG
     arenas:
       '1':
         spawns:
@@ -2645,6 +2648,7 @@ Maps:
       - RMicky
     kits:
       - Final UHC
+      - SG
     arenas:
       '1':
         spawns:
