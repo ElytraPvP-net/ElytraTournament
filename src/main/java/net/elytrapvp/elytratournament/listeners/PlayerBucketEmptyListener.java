@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerBucketEmptyListener implements Listener {
     private final ElytraTournament plugin;
@@ -59,6 +60,20 @@ public class PlayerBucketEmptyListener implements Listener {
                 Bukkit.getScheduler().runTaskLater(plugin, () -> {
                     r.setType(Material.AIR);
                 }, 200);
+
+                for(BlockFace face2 : BlockFace.values()) {
+                    Block s = r.getRelative(face2, 1);
+
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            if(s.getType() == Material.COBBLESTONE) {
+                                // TODO: Check for both water and lava, and if found replace as lava.
+                                s.setType(Material.AIR);
+                            }
+                        }
+                    }.runTaskLater(plugin, 200);
+                }
             }
         }
     }
