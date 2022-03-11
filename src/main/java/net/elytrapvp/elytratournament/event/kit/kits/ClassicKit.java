@@ -39,7 +39,7 @@ public class ClassicKit extends Kit {
         ItemStack bow = new ItemBuilder(Material.BOW)
                 .setUnbreakable(true)
                 .build();
-        ItemStack arrows = new ItemBuilder(Material.ARROW, 4).build();
+        ItemStack arrows = new ItemBuilder(Material.ARROW, 5).build();
 
         addItem(39, helmet);
         addItem(38, chestplate);
