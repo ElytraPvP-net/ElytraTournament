@@ -732,9 +732,9 @@ Maps:
             Yaw: 180
         spectate:
           World: world
-          X: 1183.5
+          X: 1056.5
           Y: 76.5
-          Z: -231.5
+          Z: -233.5
           Pitch: 0
           Yaw: 0
   Figure8:
