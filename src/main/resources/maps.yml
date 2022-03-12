@@ -460,7 +460,7 @@ Maps:
             World: world
             X: 1185.5
             Y: 69.5
-            Z: -381.5
+            Z: -383.5
             Pitch: 0
             Yaw: 180
         spectate:
@@ -483,7 +483,7 @@ Maps:
             World: world
             X: 1185.5
             Y: 69.5
-            Z: -338.5
+            Z: -340.5
             Pitch: 0
             Yaw: 180
         spectate:
@@ -506,7 +506,7 @@ Maps:
             World: world
             X: 1142.5
             Y: 69.5
-            Z: -381.5
+            Z: -383.5
             Pitch: 0
             Yaw: 180
         spectate:
@@ -529,7 +529,7 @@ Maps:
             World: world
             X: 1142.5
             Y: 69.5
-            Z: -338.5
+            Z: -340.5
             Pitch: 0
             Yaw: 180
         spectate:
