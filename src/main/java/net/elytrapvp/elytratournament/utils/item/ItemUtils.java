@@ -15,6 +15,9 @@ public class ItemUtils {
     public static void giveLobbyItems(Player player) {
         player.getInventory().clear();
 
+        // Remove armor
+        player.getInventory().setArmorContents(null);
+
         ItemStack settingsItem = new ItemBuilder(Material.REDSTONE_COMPARATOR)
                 .setDisplayName("&a&lSettings")
                 .build();
@@ -30,6 +33,9 @@ public class ItemUtils {
 
     public static void giveSpectateItems(Player player) {
         player.getInventory().clear();
+
+        // Remove armor
+        player.getInventory().setArmorContents(null);
 
         ItemStack spectate = new ItemBuilder(Material.NETHER_STAR)
                 .setDisplayName("&a&lSpectate")
