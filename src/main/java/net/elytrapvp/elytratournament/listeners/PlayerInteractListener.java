@@ -96,7 +96,7 @@ public class PlayerInteractListener implements Listener {
 
         if(event.getItem().getType() == Material.MUSHROOM_SOUP) {
             event.setCancelled(true);
-            player.getInventory().setItem(player.getInventory().getHeldItemSlot(), new ItemStack(Material.AIR));
+            player.getInventory().setItem(player.getInventory().getHeldItemSlot(), new ItemStack(Material.BOWL));
 
             double health = player.getHealth();
             health += 5;
