@@ -272,6 +272,12 @@ public class Event {
                                 new BukkitRunnable() {
                                     @Override
                                     public void run() {
+
+                                        if(plugin.gameManager().getGame(player1) != null ||
+                                        plugin.gameManager().getGame(player2) != null) {
+                                            return;
+                                        }
+
                                         // Make sures there is an open arena
                                         if(plugin.arenaManager().getOpenArena(plugin.eventManager().kit()) != null) {
                                             Game game = plugin.gameManager().createGame(match);
