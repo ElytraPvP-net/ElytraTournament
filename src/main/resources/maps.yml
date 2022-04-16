@@ -2742,3 +2742,207 @@ Maps:
           Z: 414.0
           Pitch: 0
           Yaw: 180
+  Aquamarine-Large:
+    name: Aquamarine
+    builders:
+      - RMicky
+      - deep_dark_blue
+      - SuzukaNakamoto
+      - partykid4
+    kits:
+      - Archer
+      - Blitz
+      - Bow
+      - Classic
+      - Diamond
+      - Iron
+      - No Debuff
+      - OP
+      - Speed Archer
+      - Soup
+      - Build UHC
+    arenas:
+      '1':
+        spawns:
+          '1':
+            World: world
+            X: -195.5
+            Y: 59.5
+            Z: 605.5
+            Yaw: -45
+            Pitch: 0
+          '2':
+            World: world
+            X: -195.5
+            Y: 59.5
+            Z: 605.5
+            Yaw: -45
+            Pitch: 0
+        spectate:
+          World: world
+          X: -195.5
+          Y: 59.5
+          Z: 605.5
+          Yaw: -45
+          Pitch: 0
+      '2':
+        spawns:
+          '1':
+            World: world
+            X: -5.5
+            Y: 59.5
+            Z: 725.5
+            Yaw: 135
+            Pitch: 0
+          '2':
+            World: world
+            X: -5.5
+            Y: 59.5
+            Z: 725.5
+            Yaw: 135
+            Pitch: 0
+        spectate:
+          World: world
+          X: -5.5
+          Y: 59.5
+          Z: 725.5
+          Yaw: 135
+          Pitch: 0
+      '3':
+        spawns:
+          '1':
+            World: world
+            X: -55.5
+            Y: 59.5
+            Z: 655.5
+            Yaw: -135
+            Pitch: 0
+          '2':
+            World: world
+            X: -55.5
+            Y: 59.5
+            Z: 655.5
+            Yaw: -135
+            Pitch: 0
+        spectate:
+          World: world
+          X: -55.5
+          Y: 59.5
+          Z: 655.5
+          Yaw: -135
+          Pitch: 0
+      '4':
+        spawns:
+          '1':
+            World: world
+            X: -125.5
+            Y: 59.5
+            Z: 795.5
+            Yaw: -135
+            Pitch: 0
+          '2':
+            World: world
+            X: -125.5
+            Y: 59.5
+            Z: 795.5
+            Yaw: -135
+            Pitch: 0
+        spectate:
+          World: world
+          X: -125.5
+          Y: 59.5
+          Z: 795.5
+          Yaw: -135
+          Pitch: 0
+      '5':
+        spawns:
+          '1':
+            World: world
+            X: -125.5
+            Y: 59.5
+            Z: 655.5
+            Yaw: -135
+            Pitch: 0
+          '2':
+            World: world
+            X: -125.5
+            Y: 59.5
+            Z: 655.5
+            Yaw: -135
+            Pitch: 0
+        spectate:
+          World: world
+          X: -125.5
+          Y: 59.5
+          Z: 655.5
+          Yaw: -135
+          Pitch: 0
+      '6':
+        spawns:
+          '1':
+            World: world
+            X: -145.5
+            Y: 59.5
+            Z: 795.5
+            Yaw: 135
+            Pitch: 0
+          '2':
+            World: world
+            X: -145.5
+            Y: 59.5
+            Z: 795.5
+            Yaw: 135
+            Pitch: 0
+        spectate:
+          World: world
+          X: -145.5
+          Y: 59.5
+          Z: 795.5
+          Yaw: 135
+          Pitch: 0
+      '7':
+        spawns:
+          '1':
+            World: world
+            X: -145.5
+            Y: 59.5
+            Z: 725.5
+            Yaw: 135
+            Pitch: 0
+          '2':
+            World: world
+            X: -145.5
+            Y: 59.5
+            Z: 725.5
+            Yaw: 135
+            Pitch: 0
+        spectate:
+          World: world
+          X: -145.5
+          Y: 59.5
+          Z: 725.5
+          Yaw: 135
+          Pitch: 0
+      '8':
+        spawns:
+          '1':
+            World: world
+            X: -145.5
+            Y: 59.5
+            Z: 655.5
+            Yaw: 135
+            Pitch: 0
+          '2':
+            World: world
+            X: -145.5
+            Y: 59.5
+            Z: 655.5
+            Yaw: 135
+            Pitch: 0
+        spectate:
+          World: world
+          X: -145.5
+          Y: 59.5
+          Z: 655.5
+          Yaw: 135
+          Pitch: 0
