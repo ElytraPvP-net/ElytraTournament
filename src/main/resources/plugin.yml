@@ -6,6 +6,8 @@ description: Tournament plugin for ElytraPvP
 website: http://www.elytrapvp.net
 
 commands:
+  addtitle:
+    description: Adds a title to a player.
   create:
     description: Create a tournament
   start:
