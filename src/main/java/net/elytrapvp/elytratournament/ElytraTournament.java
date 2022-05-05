@@ -85,6 +85,11 @@ public final class ElytraTournament extends JavaPlugin {
 
         // Change pace of healing.
         new HealingRunnable(this).runTaskTimer(this, 20*8, 20*8);
+
+        // If PlaceholderAPI is installed, enables placeholders
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new Placeholders(this).register();
+        }
     }
 
     @Override

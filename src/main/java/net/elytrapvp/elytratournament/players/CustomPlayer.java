@@ -29,6 +29,7 @@ public class CustomPlayer {
     int totalMedals = 0;
     int points = 0;
     int tournamentsPlayed = 0;
+    String title = "";
 
     // Settings
     private boolean showScoreboard;
@@ -81,6 +82,13 @@ public class CustomPlayer {
                 ResultSet results4 = statement4.executeQuery();
                 if(results4.next()) {
                     showScoreboard = results4.getBoolean(2);
+
+                    if(results.getString(3) == null) {
+                        setTitle("");
+                    }
+                    else {
+                        title = results4.getString(3);
+                    }
                 }
                 else {
                     PreparedStatement statement5 = plugin.mySQL().getConnection().prepareStatement("INSERT INTO tournament_settings (uuid) VALUES (?)");
@@ -205,6 +213,14 @@ public class CustomPlayer {
     }
 
     /**
+     * Get the player's current title.
+     * @return Current title.
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
      * Get the number of tournaments hosted.
      * @return Tournaments hosted.
      */
@@ -303,6 +319,26 @@ public class CustomPlayer {
             try {
                 PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET silver = ? WHERE uuid = ?");
                 statement.setInt(1, silverMedals);
+                statement.setString(2, uuid.toString());
+                statement.executeUpdate();
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    /**
+     * Set the player's current title.
+     * @param title New title.
+     */
+    public void setTitle(String title) {
+        this.title = title;
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            try {
+                PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_settings SET title = ? WHERE uuid = ?");
+                statement.setString(1, title);
                 statement.setString(2, uuid.toString());
                 statement.executeUpdate();
             }

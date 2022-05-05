@@ -5,6 +5,9 @@ authors: [ ElytraPvP ]
 description: Tournament plugin for ElytraPvP
 website: http://www.elytrapvp.net
 
+softdepend:
+  - PlaceholderAPI
+
 commands:
   addtitle:
     description: Adds a title to a player.
