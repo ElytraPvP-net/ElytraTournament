@@ -25,7 +25,8 @@ public class SettingsGUI extends CustomGUI {
             setItem(i, filler);
         }
 
-        setItem(40, new ItemBuilder(Material.ANVIL).setDisplayName("&a&lKit Editor").build(), (p, a) -> new KitEditorGUI(plugin).open(p));
+        setItem(39, new ItemBuilder(Material.ANVIL).setDisplayName("&a&lKit Editor").build(), (p, a) -> new KitEditorGUI(plugin).open(p));
+        setItem(41, new ItemBuilder(Material.NAME_TAG).setDisplayName("&a&lTitles").build(), (p, a) -> new TitleGUI(plugin, p).open(p));
 
         CustomPlayer customPlayer = plugin.customPlayerManager().getPlayer(player);
         ItemBuilder scoreboard = new ItemBuilder(Material.SIGN).setDisplayName("&a&lShow Scoreboard");
