@@ -22,3 +22,5 @@ commands:
     aliases: [matches]
   ping:
     description: View a player's ping.
+  settitle:
+    description: Set the title of a player.
