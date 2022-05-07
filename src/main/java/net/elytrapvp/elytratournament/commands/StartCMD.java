@@ -54,8 +54,11 @@ public class StartCMD extends AbstractCommand {
         Iterables.getFirst(Bukkit.getOnlinePlayers(), null).sendPluginMessage(plugin, "Tournament", out.toByteArray());
 
         Bukkit.setWhitelist(true);
-        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aGenerating Brackets"));
+        Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aEnabling Whitelist"));
 
-        plugin.eventManager().create();
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            Bukkit.broadcastMessage(ChatUtils.translate("&a&lTournament &8» &aGenerating Brackets"));
+            plugin.eventManager().create();
+        }, 100);
     }
 }
