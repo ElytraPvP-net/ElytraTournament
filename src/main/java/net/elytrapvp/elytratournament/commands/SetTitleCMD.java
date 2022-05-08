@@ -25,7 +25,7 @@ public class SetTitleCMD extends AbstractCommand {
         Player player = (Player) sender;
         CustomPlayer customPlayer = plugin.customPlayerManager().getPlayer(player);
 
-        String title = ChatUtils.translate(StringUtils.join(args));
+        String title = ChatUtils.translate(StringUtils.join(args, " "));
         customPlayer.setTitle(title);
 
         ChatUtils.chat(player, "&aYour title has been set to &f" + title + "&a.");
