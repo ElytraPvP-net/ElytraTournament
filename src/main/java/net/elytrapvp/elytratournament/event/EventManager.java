@@ -134,4 +134,15 @@ public class EventManager {
     public void kit(Kit kit) {
         this.kit = kit;
     }
+
+    /**
+     * Resets an event. Used if an event is canceled or ended.
+     */
+    public void reset() {
+        activeEvent = null;
+        eventType = EventType.NONE;
+        eventStatus = EventStatus.NONE;
+        host = null;
+        kit = null;
+    }
 }
