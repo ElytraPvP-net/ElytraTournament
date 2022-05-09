@@ -39,6 +39,7 @@ public abstract class AbstractCommand implements CommandExecutor {
         new CreateCMD(pl);
         new PingCMD();
         new SetTitleCMD(pl);
+        new SpectateCMD(pl);
         new StartCMD(pl);
     }
 

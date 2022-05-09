@@ -4,6 +4,9 @@ import net.elytrapvp.elytratournament.ElytraTournament;
 import net.elytrapvp.elytratournament.event.kit.Kit;
 import org.bukkit.entity.Player;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Manages the current event and event settings.
  */
@@ -15,6 +18,7 @@ public class EventManager {
     private Kit kit;
     private EventStatus eventStatus;
     private BestOf bestOf;
+    private final Set<Player> spectators = new HashSet<>();
 
     /**
      * Creates the manager.
@@ -23,11 +27,7 @@ public class EventManager {
     public EventManager(ElytraTournament plugin) {
         this.plugin = plugin;
 
-        host = null;
-        eventType = EventType.NONE;
-        activeEvent = null;
-        kit = null;
-        eventStatus = EventStatus.NONE;
+        reset();
     }
 
     /**
@@ -44,6 +44,14 @@ public class EventManager {
      */
     public void activeEvent(Event activeEvent) {
         this.activeEvent = activeEvent;
+    }
+
+    /**
+     * Add a spectator to the spectators list.
+     * @param player Player to add.
+     */
+    public void addSpectator(Player player) {
+        spectators.add(player);
     }
 
     /**
@@ -136,6 +144,14 @@ public class EventManager {
     }
 
     /**
+     * Removes a player from the spectator list.
+     * @param player Player to remove from the spectator list.
+     */
+    public void removeSpectator(Player player) {
+        spectators.remove(player);
+    }
+
+    /**
      * Resets an event. Used if an event is canceled or ended.
      */
     public void reset() {
@@ -144,5 +160,13 @@ public class EventManager {
         eventStatus = EventStatus.NONE;
         host = null;
         kit = null;
+    }
+
+    /**
+     * Gets all current spectators.
+     * @return All current spectators.
+     */
+    public Set<Player> spectators() {
+        return spectators;
     }
 }

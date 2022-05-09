@@ -24,3 +24,5 @@ commands:
     description: View a player's ping.
   settitle:
     description: Set the title of a player.
+  spectate:
+    description: Spectate a tournament.
