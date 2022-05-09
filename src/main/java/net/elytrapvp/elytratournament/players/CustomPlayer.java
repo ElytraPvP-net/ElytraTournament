@@ -297,7 +297,7 @@ public class CustomPlayer {
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
-                PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET hosted = ? WHERE uuid = ?");
+                PreparedStatement statement = plugin.mySQL().getConnection().prepareStatement("UPDATE tournament_statistics SET points = ? WHERE uuid = ?");
                 statement.setInt(1, points);
                 statement.setString(2, uuid.toString());
                 statement.executeUpdate();
