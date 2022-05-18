@@ -23,10 +23,6 @@ public class PlayerQuitListener implements Listener {
         plugin.eventManager().removeSpectator(player);
         event.setQuitMessage(ChatUtils.translate("&8[&c-&8] &c" + player.getName()));
 
-        if(plugin.eventManager().activeEvent() != null) {
-            plugin.eventManager().activeEvent().getPlayers().remove(plugin.eventManager().activeEvent().getPlayerID(player));
-        }
-
         Game game = plugin.gameManager().getGame(player);
         if(game != null) {
             game.playerDisconnect(player);
