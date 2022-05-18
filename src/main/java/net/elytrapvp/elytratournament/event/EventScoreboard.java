@@ -29,7 +29,7 @@ public class EventScoreboard extends CustomScoreboard {
 
         switch (plugin.eventManager().eventStatus()) {
             case NONE -> {
-                helper.setTitle("&a&lTournament &c(Alpha)");
+                helper.setTitle("&a&lTournament &b(Beta)");
                 helper.setSlot(12, "&7&m------------------");
                 helper.setSlot(11, "&fWaiting for a host.");
                 helper.setSlot(10, "");
@@ -44,7 +44,7 @@ public class EventScoreboard extends CustomScoreboard {
                 helper.setSlot(1, "&aplay.elytrapvp.net");
             }
             case WAITING -> {
-                helper.setTitle("&a&lTournament &c(Alpha)");
+                helper.setTitle("&a&lTournament &b(Beta)");
                 helper.setSlot(15, "&7&m------------------");
                 helper.setSlot(14, "&aHost: &f" + plugin.eventManager().host().getName());
                 helper.setSlot(13, "&aKit: &f" + plugin.eventManager().kit().getName());
@@ -62,7 +62,7 @@ public class EventScoreboard extends CustomScoreboard {
                 helper.setSlot(1, "&aplay.elytrapvp.net");
             }
             case RUNNING -> {
-                helper.setTitle("&a&lTournament &c(Alpha)");
+                helper.setTitle("&a&lTournament &b(Beta)");
                 helper.setSlot(10, "&7&m------------------");
                 helper.setSlot(9, "&aHost: &f" + plugin.eventManager().host().getName());
                 helper.setSlot(8, "&aKit: &f" + plugin.eventManager().kit().getName());

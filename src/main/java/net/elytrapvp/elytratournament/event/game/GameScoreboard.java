@@ -29,7 +29,7 @@ public class GameScoreboard extends CustomScoreboard {
         }
 
         if(plugin.eventManager().kit().hasAbilities()) {
-            helper.setTitle("&a&lTournament &c(Alpha)");
+            helper.setTitle("&a&lTournament &b(Beta)");
             helper.setSlot(13, "&7&m------------------");
             helper.setSlot(12, "&aTime: &f" + game.getTimer().toString());
             helper.setSlot(11, "");
@@ -46,7 +46,7 @@ public class GameScoreboard extends CustomScoreboard {
             helper.setSlot(1, "&aplay.elytrapvp.net");
         }
         else {
-            helper.setTitle("&a&lTournament &c(Alpha)");
+            helper.setTitle("&a&lTournament &b(Beta)");
             helper.setSlot(15, "&7&m------------------");
             helper.setSlot(14, "&aTime: &f" + game.getTimer().toString());
             helper.setSlot(13, "");
