@@ -4,6 +4,7 @@ import net.elytrapvp.elytratournament.ElytraTournament;
 import net.elytrapvp.elytratournament.event.kit.Kit;
 import net.elytrapvp.elytratournament.utils.chat.ChatUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -194,6 +195,14 @@ public class CustomPlayer {
      */
     public Map<Integer, Integer> getKitEditor(String kit) {
         return kitEditor.get(kit);
+    }
+
+    /**
+     * Get the player object of the custom player.
+     * @return Player object of the custom player.
+     */
+    public Player getPlayer() {
+        return Bukkit.getPlayer(uuid);
     }
 
     /**
