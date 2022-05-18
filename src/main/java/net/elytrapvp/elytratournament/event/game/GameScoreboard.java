@@ -40,7 +40,6 @@ public class GameScoreboard extends CustomScoreboard {
             helper.setSlot(6, "  &aDouble Jump: &f" + game.getDoubleJumps(player) + "/" + plugin.eventManager().kit().getDoubleJumps());
             helper.setSlot(5, "  &aTriple Shot: &f" + game.getTripleShots(player) + "/" + plugin.eventManager().kit().getTripleShots());
             helper.setSlot(4, "  &aRepulsor: &f" + game.getRepulsors(player) + "/" + plugin.eventManager().kit().getRepulsors());
-            //helper.setSlot(4, "  &aRepulsor: &c0&f/&c0");
             helper.setSlot(3, "");
             helper.setSlot(2, "&7&m------------------");
             helper.setSlot(1, "&aplay.elytrapvp.net");
