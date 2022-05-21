@@ -42,7 +42,7 @@ public class AddTitleCMD extends AbstractCommand {
                     return;
                 }
 
-                String title = StringUtils.join(Arrays.copyOfRange(args, 1, args.length));
+                String title = StringUtils.join(Arrays.copyOfRange(args, 1, args.length), " ");
 
                 PreparedStatement statement2 = plugin.mySQL().getConnection().prepareStatement("INSERT INTO tournament_titles (uuid,title) VALUES (?,?)");
                 statement2.setString(1, target);
