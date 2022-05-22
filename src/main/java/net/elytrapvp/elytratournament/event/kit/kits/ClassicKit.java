@@ -14,6 +14,7 @@ public class ClassicKit extends Kit {
         setIconMaterial(Material.FISHING_ROD);
         setKnockback("rod");
         setRodMultiplier(1.5);
+        setNaturalRegen(false);
 
         ItemStack helmet = new ItemBuilder(Material.IRON_HELMET)
                 .addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2)
