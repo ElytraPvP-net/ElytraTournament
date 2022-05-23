@@ -314,8 +314,6 @@ public class Event {
                     }
                 }
             }
-
-            System.out.println("Tournament Looping");
         },0, 200);
     }
 
